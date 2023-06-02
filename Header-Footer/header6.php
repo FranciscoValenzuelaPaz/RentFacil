@@ -11,7 +11,7 @@ if(isset($_GET['email'])){
     ini_set("display_errors",1);
     ini_set('default_charset','utf-8');
     error_reporting(E_ALL);
-    include("../ConexionDB/conexion.php");
+    include("../../ConexionDB/conexion.php");
     
 ?>
 <head>
@@ -28,24 +28,25 @@ if(isset($_GET['email'])){
 </head>
 
 <body>
+<div class="container">
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="../inicioHome/inicio.php?email=<?php echo $email;?>">RentFácil</a>
+    <a class="navbar-brand" href="../../inicioHome/inicio.php?email=<?php echo $email;?>">RentFácil</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../inicioHome/inicio.php?email=<?php echo $email;?>">Home</a>
+          <a class="nav-link active" aria-current="page" href="../../inicioHome/inicio.php?email=<?php echo $email;?>">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Servicios
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../Servicios/Maquinaria/publicacionMaquinaria.php?email=<?php echo $email;?>">Maquinarias</a></li>
-           <li><a class="dropdown-item" href="../Servicios/Estacionamiento/publicacionEstacionamiento.php?email=<?php echo $email;?>">Estacionamientos</a></li>
+            <li><a class="dropdown-item" href="../../Servicios/Maquinaria/publicacionMaquinaria.php?email=<?php echo $email;?>">Maquinarias</a></li>
+           <li><a class="dropdown-item" href="../../Servicios/Estacionamiento/publicacionEstacionamiento.php?email=<?php echo $email;?>">Estacionamientos</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -53,10 +54,10 @@ if(isset($_GET['email'])){
             Usuario
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../Perfiles/editarPerfilFormulario.php?email=<?php echo $email;?>">Editar Perfil / Direcciones </a></li>
-            <li><a class="dropdown-item" href="../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=<?php echo $email;?>">Ver Maquinaria</a></li>
-            <li><a class="dropdown-item" href="../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=<?php echo $email;?>">Ver Estacionamientos</a></li>
-           <li><a class="dropdown-item" href="../inicioSesion/iniciarSesion.php">Cerrar Sesión</a></li>
+            <li><a class="dropdown-item" href="../../Perfiles/editarPerfilFormulario.php?email=<?php echo $email;?>">Editar Perfil / Direcciones </a></li>
+            <li><a class="dropdown-item" href="../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=<?php echo $email;?>">Ver Maquinaria</a></li>
+            <li><a class="dropdown-item" href="../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=<?php echo $email;?>">Ver Estacionamientos</a></li>
+           <li><a class="dropdown-item" href="../../inicioSesion/iniciarSesion.php">Cerrar Sesión</a></li>
           </ul>
         </li>
       
