@@ -1,6 +1,7 @@
 <style>
-    <?php include("../CSS/recuperarContrasenaFormulario2.css"); ?>
+    <?php include("../CSS/recuperarCuentaFormulario.css"); ?>
 </style>
+
 <?php
 include("../Header-Footer/header3.php");
 if (isset($_GET['email'])) {
@@ -11,9 +12,9 @@ if (isset($_GET['email'])) {
 ?>
 
 <body class="body">
-    <div class="fondoformulario ">
-        <div class="fs-2 titulo">RECUPERAR CONTRASEÑA</div>
-        <form action="recuperar.php" method="POST">
+    <div class="fondoformulario margen">
+        <div class="fs-2">RECUPERAR CUENTA</div>
+        <form action="recuperar2.php" method="POST">
             <input type="hidden" name="email" value="<?php echo $email; ?>">
             <div class="form-group input">
                 <label for="contrasena">Nueva Contraseña</label>
@@ -39,6 +40,7 @@ if (isset($_GET['email'])) {
             </script>
             <div class="form-group input">
                 <label for="confirmarContrasena">Confirmar Contraseña</label>
+
                 <input type="password" class="form-control input2" id="confirmarContrasena" name="confirmarContrasena" onchange="confirmar_contrasenas(this.value)" placeholder="Confirmar Contraseña" Required>
             </div>
             <script>
@@ -49,11 +51,10 @@ if (isset($_GET['email'])) {
                             alert("Las contraseñas no coinciden. Vuelve a intentarlo.");
                         }
                     }
-
                 }
             </script>
             <div>
-                <button type="submit" class="btn btn-success boton">Guardar Nueva Contraseña</button>
+                <button type="submit" class="btn btn-success boton">Desbloquear Cuenta</button>
             </div>
         </form>
     </div>
