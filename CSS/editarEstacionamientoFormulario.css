@@ -1,0 +1,58 @@
+.body {
+    margin-bottom: 15px !important;
+    background-image: url("../../../images/fondo_formulario.png");
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 5px !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+.input2 {
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+  }
+.fondo {
+    background-image: url("../../../images/fondo_todo.png");
+    margin-bottom: 15px !important;
+    border-radius: 5px !important;
+    border: 5px !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+
+.input {
+    margin-top: 15px !important;
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+}
+
+.margen {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.label {
+    color: white !important;
+    text-align: center;
+}
+
+.txtdescripcion {
+    text-align: justify;
+    margin-top: 15px;
+}
+
+small {
+    color: white;
+}
+
+.margenBoton {
+    margin-left: 500px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}

@@ -1,0 +1,56 @@
+.descripcion {
+    height: 120px !important;
+    width: 280px !important;
+}
+
+.fondoformulario {
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url(../../../images/fondo_todo.png);
+    margin-bottom: 15px !important;
+    border-radius: 5px !important;
+    border: 5px !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+.input2 {
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+  }
+.tabla {
+    width: 700px !important;
+}
+
+.tablatxt {
+    text-align: center !important;
+}
+
+.body {
+    background-image: url("../../../images/fondo_formulario.png");
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 15px !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+
+.control1 {
+    text-align: center;
+}
+
+.celda {
+    width: 140px !important;
+}
+
+.margen {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fin {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,50 @@
+.input {
+    margin-top: 15px !important;
+    text-align: center;
+    color: black !important;
+    margin-left: auto;
+
+}
+.input2 {
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+  }
+.margen {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.label {
+    color: white !important;
+    text-align: center;
+}
+
+.fondoformulario {
+    margin-top: 15px;
+    text-align: center;
+    color: white !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url("../images/fondo_formulario.png");
+}
+
+.tabla {
+    width: 700px !important;
+}
+
+.tablatxt {
+    text-align: center !important;
+}
+
+.body {
+    background-image: url("../images/fondo_formulario.png");
+}
+
+.margenBoton {
+    margin-left: 260px;
+}
+
+.fin {
+    margin-bottom: 15px;
+}

@@ -1,0 +1,43 @@
+.input {
+    color: white !important;
+}
+
+.margen {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+
+}
+
+.fondoformulario {
+    margin-top: 15px;
+    background-image: url("../images/fondo_formulario.png");
+    text-align: center;
+    color: white !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+    
+}
+.fondoformulario:before {
+    
+    background-image: url('../images/fondo_formulario.png');
+   opacity: 0.1;
+}
+.input2 {
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+  }
+.tabla {
+    width: 700px !important;
+}
+
+.tablatxt {
+    text-align: center !important;
+}
+.fila:hover{
+    background-color: #eee !important;
+    color: yellow !important;    
+}
