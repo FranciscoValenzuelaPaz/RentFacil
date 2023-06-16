@@ -18,14 +18,14 @@ if(isset($_POST['btnEditarPerfil'])){
         $mensaje = "actualizado";
         echo '
             <script>
-                    window.location="../Direcciones/crudDirecciones.php?email='.$email.'&mensaje=' . $mensaje . '";
+                    window.location="editarPerfilFormulario.php?email='.$email.'&mensaje=' . $mensaje . '";
             </script>';
     } 
     else{
         $mensaje = "error_actualizar";
         echo '
             <script>
-                    window.location="../Direcciones/crudDirecciones.php?email='.$email.'&mensaje=' . $mensaje . '";
+                    window.location="editarPerfilFormulario.php?email='.$email.'&mensaje=' . $mensaje . '";
             </script>';
     } 
 }
