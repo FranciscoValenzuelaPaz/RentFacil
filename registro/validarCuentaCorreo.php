@@ -22,7 +22,3 @@ if ($dbh->exec($sql)) {
 }else{
     $mensaje = "noValidado";
 }
-
-?>
-
-

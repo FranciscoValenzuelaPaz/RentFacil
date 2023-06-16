@@ -3,8 +3,8 @@
 <?php
 require_once '../SendMail/config.php';
 require '../SendMail/vendor/autoload.php';
-ini_set("display_errors",1);
-ini_set('default_charset','utf-8');
+ini_set("display_errors", 1);
+ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
 include("../encriptarContrasena/encriptarClave.php");
@@ -24,7 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         empty($nombre) || empty($apellido) || empty($rut) || empty($telefono) ||
         empty($email) || empty($contrasena) || empty($confirmarContrasena) || empty($terminos)
     ) {
-        echo "Por favor, rellene todos los campos del formulario.";
+        $mensaje = "vacio";
+        echo '
+                <script>
+                        window.location="registrarUsuario.php?mensaje=' . $mensaje . '";
+                </script>';
     } else {
 
         $sql = "SELECT * FROM tabla_usuario WHERE rut='$rut' OR email='$email'";
@@ -44,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($dbh->exec($sql)) {
                 $mensaje = "ok";
-                $nombreCompleto = $nombre." ".$apellido;
-                $link = "http://localhost/ProyectoInacap/RentFacil/registro/validarCuentaCorreo.php?correo=".$email;
+                $nombreCompleto = $nombre . " " . $apellido;
+                $link = "http://localhost/ProyectoInacap/RentFacil/registro/validarCuentaCorreo.php?correo=" . $email;
 
                 //mandaremos un correo al usuario para cambiar el estado del usuario de pendiente a desbloqueado
 
@@ -58,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "
                      <strong>Por favor, clickea el link para validar tu Cuenta.</strong>
                      <br>
-                     <a href='".$link."' style='color:#198754;'>Valida tu Cuenta de Usuario</a>"
-    
+                     <a href='" . $link . "' style='color:#198754;'>Valida tu Cuenta de Usuario</a>"
+
                 );
-                
+
                 $sendgrid = new \SendGrid(SENDGRID_API_KEY);
                 try {
                     $response = $sendgrid->send($email);
@@ -76,10 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <script>
                             window.location="../inicioSesion/iniciarSesion.php?mensaje=' . $mensaje . '";
                     </script>';
-
-
-
-
             } else {
                 $mensaje = "error";
                 echo '
@@ -87,13 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             window.location="registrarUsuario.php?mensaje=' . $mensaje . '";
                     </script>';
             }
-
         }
-
-
-
-
-
     }
-
 }
