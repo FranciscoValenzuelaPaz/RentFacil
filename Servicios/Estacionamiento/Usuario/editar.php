@@ -1,5 +1,5 @@
 <?php
- include("../../../Header-Footer/header5.php");
+include("../../../Header-Footer/header5.php");
 ?>
 
 <?php
@@ -21,37 +21,45 @@ $mensaje = '';
 // print_r($_FILES);
 // echo "<br>";
 
-if($_FILES['link_foto']['size'] > 0){ //esto quiere decir que el usuario desea editar la foto
+if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea editar la foto
 
-    //Eliminacion de archivos existentes
-    //obtener link consultando a la base 
-    $linkFoto = $link_foto;
-    $linkFotoArray = explode("/",$linkFoto);
-    for ($i=0;$i<count($linkFotoArray);($i++)){
-        $archivoFoto = $linkFotoArray[$i];   
+    if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] == 'image/jpeg') {
+
+        //Eliminacion de archivos existentes
+        //obtener link consultando a la base 
+        $linkFoto = $link_foto;
+        $linkFotoArray = explode("/", $linkFoto);
+        for ($i = 0; $i < count($linkFotoArray); ($i++)) {
+            $archivoFoto = $linkFotoArray[$i];
+        }
+
+        $archivoFoto = "../../../Servicios/Estacionamiento/Usuario/fotosUsuarios/" . $archivoFoto;
+        //elimino el archivo original 
+        //echo $archivo;
+        unlink($archivoFoto);
+
+
+        //Trabajar links de archivos
+        $foto = $_FILES['link_foto']['name'];
+        trim($foto);
+        $archivoFoto = $_FILES['link_foto']['tmp_name'];
+        $fecha = date_create();
+        $fecha = date_timestamp_get($fecha);
+
+        $rutaFoto = "../../../Servicios/Estacionamiento/Usuario/fotosUsuarios/" . $fecha . $foto;
+
+        $linkFoto = "http://localhost/ProyectoInacap/RentFacil/Servicios/Estacionamiento/Usuario/fotosUsuarios/" . $fecha . $foto;
+        if (move_uploaded_file($archivoFoto, $rutaFoto)) {
+            $query = $dbh->prepare("UPDATE tabla_estacionamientos SET link_foto = ? WHERE id_estacionamiento = ?;");
+            $resultado = $query->execute([$linkFoto, $id_estacionamiento]); # Pasar en el mismo orden de los ?
+        }
+    } else {
+        $mensaje = "formato_invalido";
+        echo '
+                <script>
+                        window.location="../../../Servicios/Estacionamiento/Usuario/editarEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                </script>';
     }
-
-    $archivoFoto = "../../../Servicios/Estacionamiento/Usuario/fotosUsuarios/".$archivoFoto;
-    //elimino el archivo original 
-    //echo $archivo;
-    unlink($archivoFoto);
-
-
-    //Trabajar links de archivos
-    $foto = $_FILES['link_foto']['name'];
-    trim($foto);
-    $archivoFoto = $_FILES['link_foto']['tmp_name'];
-    $fecha = date_create();
-    $fecha = date_timestamp_get($fecha);
-
-    $rutaFoto = "../../../Servicios/Estacionamiento/Usuario/fotosUsuarios/" . $fecha . $foto;
-
-    $linkFoto = "http://localhost/ProyectoInacap/RentFacil/Servicios/Estacionamiento/Usuario/fotosUsuarios/" . $fecha . $foto;
-    if (move_uploaded_file($archivoFoto, $rutaFoto)) {
-        $query = $dbh->prepare("UPDATE tabla_estacionamientos SET link_foto = ? WHERE id_estacionamiento = ?;");
-        $resultado = $query->execute([$linkFoto, $id_estacionamiento]); # Pasar en el mismo orden de los ?
-    }
-
 }
 
 
@@ -59,26 +67,25 @@ if($_FILES['link_foto']['size'] > 0){ //esto quiere decir que el usuario desea e
 // 
 
 
-    // Reemplazar por PDO
-    //generamos consulta para actualizar los datos en la base de datos
-    $query = $dbh->prepare("UPDATE tabla_estacionamientos SET titulo = ?, descripcion = ?, ubicacion = ?, id_comuna = ?,
+// Reemplazar por PDO
+//generamos consulta para actualizar los datos en la base de datos
+$query = $dbh->prepare("UPDATE tabla_estacionamientos SET titulo = ?, descripcion = ?, ubicacion = ?, id_comuna = ?,
      montoArriendo = ? WHERE id_estacionamiento = ?;");
-    $resultado = $query->execute([$titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $id_estacionamiento]); # Pasar en el mismo orden de los ?
-    if($resultado === TRUE){
-        $mensaje = "editado";
-        echo '
+$resultado = $query->execute([$titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $id_estacionamiento]); # Pasar en el mismo orden de los ?
+if ($resultado === TRUE) {
+    $mensaje = "editado";
+    echo '
              <script>
                      window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
              </script>';
-    } 
-    else{
-        $mensaje = "error_editar";
-        echo '
+} else {
+    $mensaje = "error_editar";
+    echo '
              <script>
                      window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
              </script>';
-    } 
-    
+}
+
 
 ?>
 <br><br>
@@ -93,9 +100,7 @@ if($_FILES['link_foto']['size'] > 0){ //esto quiere decir que el usuario desea e
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

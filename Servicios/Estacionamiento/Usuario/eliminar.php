@@ -43,6 +43,3 @@
                      window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
              </script>';  
      }
-
-?>
-

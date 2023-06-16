@@ -43,6 +43,3 @@
                      window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
              </script>';  
      }
-
-?>
-
