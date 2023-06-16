@@ -46,4 +46,3 @@ if ($resultado->rowCount() > 0) {
      <script>
           window.location="../inicioSesion/iniciarSesion.php";
      </script>';
-?>
