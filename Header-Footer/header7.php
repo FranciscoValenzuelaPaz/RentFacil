@@ -1,5 +1,5 @@
 <style>
-  <?php include("../../CSS/header6.css"); ?>
+  <?php include("../CSS/header7.css"); ?>
 </style>
 
 <?php
@@ -15,7 +15,7 @@ if (isset($_GET['email'])) {
 ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
-include("../../ConexionDB/conexion.php");
+include("../ConexionDB/conexion.php");
 
 ?>
 
@@ -25,7 +25,7 @@ include("../../ConexionDB/conexion.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <!-- Sweet Alert Script -->
-  <script src="../../js/sweetalert.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
 </head>
 
 
@@ -34,7 +34,7 @@ include("../../ConexionDB/conexion.php");
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary fondo" data-bs-theme="dark">
       <div class="container-fluid">
         <title>RentFácil</title>
-        <a class="navbar-brand" href="../../inicioHome/inicio.php?email=<?php echo $email; ?>">RentFácil</a>
+        <a class="navbar-brand" href="../inicioHome/inicio.php?email=<?php echo $email; ?>">RentFácil</a>
         <div class="botones">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,8 +46,8 @@ include("../../ConexionDB/conexion.php");
                   Servicios
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="../../Servicios/Maquinaria/publicacionMaquinaria.php?email=<?php echo $email; ?>">Maquinarias</a></li>
-                  <li><a class="dropdown-item" href="../../Servicios/Estacionamiento/publicacionEstacionamiento.php?email=<?php echo $email; ?>">Estacionamientos</a></li>
+                  <li><a class="dropdown-item" href="../Servicios/Maquinaria/publicacionMaquinaria.php?email=<?php echo $email; ?>">Maquinarias</a></li>
+                  <li><a class="dropdown-item" href="../Servicios/Estacionamiento/publicacionEstacionamiento.php?email=<?php echo $email; ?>">Estacionamientos</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -55,10 +55,10 @@ include("../../ConexionDB/conexion.php");
                   Usuario
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="../../Perfiles/editarPerfilFormulario.php?email=<?php echo $email; ?>">Editar Perfil / Direcciones </a></li>
-                  <li><a class="dropdown-item" href="../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=<?php echo $email; ?>">Ver Maquinaria</a></li>
-                  <li><a class="dropdown-item" href="../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=<?php echo $email; ?>">Ver Estacionamientos</a></li>
-                  <li><a class="dropdown-item" href="../../inicioSesion/iniciarSesion.php">Cerrar Sesión</a></li>
+                  <li><a class="dropdown-item" href="../Perfiles/editarPerfilFormulario.php?email=<?php echo $email; ?>">Editar Perfil / Direcciones </a></li>
+                  <li><a class="dropdown-item" href="../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=<?php echo $email; ?>">Ver Maquinaria</a></li>
+                  <li><a class="dropdown-item" href="../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=<?php echo $email; ?>">Ver Estacionamientos</a></li>
+                  <li><a class="dropdown-item" href="../inicioSesion/iniciarSesion.php">Cerrar Sesión</a></li>
                 </ul>
               </li>
 
