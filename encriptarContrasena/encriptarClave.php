@@ -27,6 +27,3 @@ $iv = base64_decode("C9fBxl1EWtYTL1/M8jfstw==");
  $getIV = function () use ($method) {
      return base64_encode(openssl_random_pseudo_bytes(openssl_cipher_iv_length($method)));
  };
-
-?>
-
