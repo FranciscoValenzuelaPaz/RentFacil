@@ -23,10 +23,10 @@ include("../ConexionDB/conexion.php");
 </head>
 <?php
 
-if (isset($_GET['email'])) {
-    $email = $_GET['email'];
+if (isset($_GET['id_usuario'])) {
+    $id_usuario = $_GET['id_usuario'];
 } else {
-    $email = "";
+    $id_usuario = "";
 }
 
 ?>
@@ -36,7 +36,7 @@ if (isset($_GET['email'])) {
 
         <div class="fs-3 ">INGRESAR DIRECCIÓN</div>
         <form name="form1" action="registrar.php" method="POST">
-            <input class="input" type="hidden" name="email" value="<?php echo $email; ?>">
+            <input class="input" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
             <div class="form-group margen">
                 <label for="id_region ">Región</label>
 
@@ -120,7 +120,7 @@ if (isset($_GET['email'])) {
                     <button type="submit" class="btn btn-success" id="btnIngresarDireccion" name="btnIngresarDireccion">Ingresar</button>&nbsp;&nbsp;
                 </div>
                 <div>
-                    <input type="button" class="btn btn-secondary fin" name="cancelar" value="Cancelar" onclick="location.href='crudDirecciones.php?email=<?php echo $email; ?>'">
+                    <input type="button" class="btn btn-secondary fin" name="cancelar" value="Cancelar" onclick="location.href='crudDirecciones.php?id_usuario=<?php echo $id_usuario; ?>'">
                 </div>
             </div>
         </form>

@@ -24,7 +24,7 @@ include("../ConexionDB/conexion.php");
 
 if (isset($_POST['btnIngresarDireccion'])) {
     //capturo los datos del formulario
-    $email = $_POST['email'];
+    $id_usuario = $_POST['id_usuario'];
     $id_region = $_POST['id_region'];
     $id_ciudad = $_POST['id_ciudad'];
     $id_comuna = $_POST['id_comuna'];
@@ -37,7 +37,7 @@ if (isset($_POST['btnIngresarDireccion'])) {
     //crearemos una consulta para traer la cantidad de direcciones que posee el usuario
     //NO DEBE TENER MÁS DE 5 DIRECCIONES
     $arrayCantidadDirecciones = array();
-    $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE correo='$email'");
+    $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE id_usuario='$id_usuario'");
     // Especificamos el fetch mode antes de llamar a fetch()
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     // Ejecutamos
@@ -64,27 +64,27 @@ if (isset($_POST['btnIngresarDireccion'])) {
     //var_dump($_POST);
 
     //generamos consulta para actualizar los datos en la base de datos
-    $sql = "INSERT INTO tabla_direcciones (correo, id_region ,id_ciudad , id_comuna, direccion, tipo_direccion) VALUES
-    ( '$email ', '$id_region', '$id_ciudad', '$id_comuna', '$direccion', '$tipo_direccion')";
+    $sql = "INSERT INTO tabla_direcciones (id_usuario, id_region ,id_ciudad , id_comuna, direccion, tipo_direccion) VALUES
+    ( '$id_usuario ', '$id_region', '$id_ciudad', '$id_comuna', '$direccion', '$tipo_direccion')";
 
     if ($mensaje != "max_direcciones") {
         if ($dbh->exec($sql)) {
             $mensaje = 'registrado';
             echo '
                 <script>
-                        window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                        window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
                 </script>';
         } else {
             $mensaje = 'error_registrar';
             echo '
                 <script>
-                        window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                        window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
                 </script>';
         }
     } else {
         echo '
                 <script>
-                        window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                        window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
                 </script>';
     }
 }

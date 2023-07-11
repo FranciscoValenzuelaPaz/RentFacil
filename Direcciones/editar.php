@@ -26,7 +26,7 @@ include("../ConexionDB/conexion.php");
 if (isset($_POST['btnEditarDireccion'])) {
 
     //capturo los datos del formulario
-    $email = $_POST['email'];
+    $id_usuario = $_POST['id_usuario'];
     $id_direccion = $_POST['id_direccion'];
     $id_region = $_POST['id_region'];
     $id_ciudad = $_POST['id_ciudad'];
@@ -42,13 +42,13 @@ if (isset($_POST['btnEditarDireccion'])) {
         $mensaje = "editado";
         echo '
             <script>
-                window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     } else {
         $mensaje = "error_editar";
         echo '
             <script>
-                window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     }
 }

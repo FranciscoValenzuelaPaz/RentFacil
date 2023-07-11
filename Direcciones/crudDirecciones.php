@@ -3,10 +3,10 @@
 </style>
 <?php
 include("../Header-Footer/header4.php");
-if (isset($_GET['email'])) {
-  $email = $_GET['email'];
+if (isset($_GET['id_usuario'])) {
+  $id_usuario = $_GET['id_usuario'];
 } else {
-  $email = '';
+  $id_usuario = '';
 }
 if (isset($_GET['mensaje'])) {
   $mensaje = $_GET['mensaje'];
@@ -72,13 +72,13 @@ if (isset($_GET['mensaje'])) {
 <body class="fondoformulario margen ">
   <div class="fs-2 margen ">Registrar Direcciones</div>
   <div class="margen">
-    <button type="button" class="btn btn-success" onclick="location='registrarDireccion.php?email=<?php echo $email ?>'">Registrar</button>
+    <button type="button" class="btn btn-success" onclick="location='registrarDireccion.php?id_usuario=<?php echo $id_usuario; ?>'">Registrar</button>
   </div>
   <?php
   //array con informacion de las direcciones del usuario
   $arrayDirecciones = array();
   $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones as D JOIN tabla_regiones as R ON D.id_region=R.id_region JOIN 
-    tabla_ciudades as Ci ON D.id_ciudad=Ci.id_ciudad JOIN tabla_comunas as Cu ON D.id_comuna = Cu.id_comuna WHERE D.correo='$email'");
+    tabla_ciudades as Ci ON D.id_ciudad=Ci.id_ciudad JOIN tabla_comunas as Cu ON D.id_comuna = Cu.id_comuna WHERE D.id_usuario='$id_usuario' and D.eliminado = FALSE");
   // Especificamos el fetch mode antes de llamar a fetch()
   $stmt->setFetchMode(PDO::FETCH_ASSOC);
   // Ejecutamos
@@ -95,7 +95,7 @@ if (isset($_GET['mensaje'])) {
     <?php if (!empty($arrayDirecciones)) { ?>
       <div class="fs-3">Lista de Dirección</div>
       <div class="margen">
-        <button class="btn btn-success" onclick="location='crudDirecciones.php?email=<?php echo $email ?>'">Actualizar Registros</button>
+        <button class="btn btn-success" onclick="location='crudDirecciones.php?id_usuario=<?php echo $id_usuario; ?>'">Actualizar Registros</button>
       </div>
       <div class="tabla">
         <div class="table-responsive ">
@@ -122,8 +122,8 @@ if (isset($_GET['mensaje'])) {
                   echo $arrayTipoDireccion[$aux];
                   ?>
                 </td>
-                <td><a href="editarDireccion.php?email=<?php echo $email; ?>&id_direccion=<?php echo $direccion['id_direccion']; ?>"><button class="btn btn-success">Editar</button></a></td>
-                <td><a href="eliminar.php?email=<?php echo $email; ?>&id_direccion=<?php echo $direccion['id_direccion']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
+                <td><a href="editarDireccion.php?id_usuario=<?php echo $id_usuario; ?>&id_direccion=<?php echo $direccion['id_direccion']; ?>"><button class="btn btn-success">Editar</button></a></td>
+                <td><a href="eliminar.php?id_usuario=<?php echo $id_usuario; ?>&id_direccion=<?php echo $direccion['id_direccion']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
               </tr>
           <?php } ?>
           </tbody>

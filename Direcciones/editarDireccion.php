@@ -23,11 +23,11 @@ include("../ConexionDB/conexion.php");
 </head>
 <?php
 
-if (isset($_GET['email']) && isset($_GET['id_direccion'])) {
-    $email = $_GET['email'];
+if (isset($_GET['id_usuario']) && isset($_GET['id_direccion'])) {
+    $id_usuario = $_GET['id_usuario'];
     $id_direccion = $_GET['id_direccion'];
 } else {
-    $email = "";
+    $id_usuario = "";
     $id_direccion = "";
 }
 $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE id_direccion='$id_direccion'");
@@ -49,7 +49,7 @@ while ($row = $stmt->fetch()) {
     <div class="container">
         <div class="fs-3">EDITAR DIRECCIONES</div>
         <form name="form1" action="editar.php" method="POST">
-            <input type="hidden" name="email" value="<?php echo $email; ?>">
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
             <input type="hidden" name="id_direccion" value="<?php echo $id_direccion; ?>">
             <div class="form-group ">
                 <label for="id_region">Región</label>
@@ -144,7 +144,7 @@ while ($row = $stmt->fetch()) {
             </div>
             <div class="d-flex margenBoton">
                 <button type="submit" class="btn btn-success" id="btnEditarDireccion" name="btnEditarDireccion">Guardar Cambios</button>&nbsp;&nbsp;
-                <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='crudDirecciones.php?email=<?php echo $email; ?>'">
+                <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='crudDirecciones.php?id_usuario=<?php echo $id_usuario; ?>'">
             </div>
         </form>
 

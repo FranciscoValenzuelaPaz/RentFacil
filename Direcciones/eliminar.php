@@ -22,7 +22,7 @@ include("../ConexionDB/conexion.php");
 
 //var_dump($_POST);
 //capturo los datos del formulario
-$email = $_GET['email'];
+$id_usuario = $_GET['id_usuario'];
 $id_direccion = $_GET['id_direccion'];
 $mensaje = '';
 
@@ -33,13 +33,13 @@ if ($resultado == 1) {
     $mensaje = 'eliminado';
     echo '
             <script>
-                    window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
 } else {
     $mensaje = 'error_eliminar';
     echo '
             <script>
-                    window.location="../Direcciones/crudDirecciones.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../Direcciones/crudDirecciones.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
 }
 //echo $mensaje;
