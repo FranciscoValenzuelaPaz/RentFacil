@@ -7,12 +7,12 @@
     <div class="container contenedor">
         <?php
         include("../../../Header-Footer/header5.php");
-        if (isset($_GET['email']) && isset($_GET['id_maquinaria']) && isset($_GET['link'])) {
-            $email = $_GET['email'];
+        if (isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['link'])) {
+            $id_usuario = $_GET['id_usuario'];
             $id_maquinaria = $_GET['id_maquinaria'];
             $link_foto = $_GET['link'];
         } else {
-            $email = '';
+            $id_usuario = '';
             $id_maquinaria = '';
             $link_foto = '';
         }
@@ -76,12 +76,12 @@
         <div class="fondo ">
             <div class="fs-3 label">EDITAR MAQUINARIA</div>
             <form name="form1" action="editar.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="email" value="<?php echo $email; ?>">
+                <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
                 <input type="hidden" name="link_foto" value="<?php echo $link_foto; ?>">
                 <input type="hidden" name="id_maquinaria" value="<?php echo $id_maquinaria; ?>">
                 <div class="form-group input">
                     <label class="label" for="id_region">Región</label>
-                    <select class="form-select input2" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $email; ?>','<?php echo $id_maquinaria; ?>','<?php echo $link_foto; ?>')" Required>
+                    <select class="form-select input2" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $id_usuario; ?>','<?php echo $id_maquinaria; ?>','<?php echo $link_foto; ?>')" Required>
                         <option value="" selected>Selecciona una Región</option>
                         <?php
                         $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
@@ -107,14 +107,14 @@
                     </select>
                 </div>
                 <script>
-                    function marcarCiudad(region, email, id_maquinaria, link_foto) {
+                    function marcarCiudad(region, id_usuario, id_maquinaria, link_foto) {
                         // alert("Hola");
                         var region = region;
-                        var email = email;
+                        var id_usuario = id_usuario;
                         var id_maquinaria = id_maquinaria;
                         var link_foto = link_foto;
-                        if (region != "" && email != "" && id_maquinaria != "" && link_foto != "") {
-                            window.location.href = "editarMaquinaria.php?email=" + email + "&region=" + region + "&id_maquinaria=" + id_maquinaria + "&link=" + link_foto;
+                        if (region != "" && id_usuario != "" && id_maquinaria != "" && link_foto != "") {
+                            window.location.href = "editarMaquinaria.php?id_usuario=" + id_usuario + "&region=" + region + "&id_maquinaria=" + id_maquinaria + "&link=" + link_foto;
                         } else
                             alert('No ha seleccionado ninguna Región');
                         //document.location.href="modificarEstado.php?id="+id;
@@ -123,7 +123,7 @@
                 <div class="form-group input">
                     <label class="label" for="id_ciudad">Ciudad</label>
 
-                    <select class="form-select input2" aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $email; ?>','<?php echo $region; ?>','<?php echo $id_maquinaria; ?>','<?php echo $link_foto; ?>')" Required>
+                    <select class="form-select input2" aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $id_usuario; ?>','<?php echo $region; ?>','<?php echo $id_maquinaria; ?>','<?php echo $link_foto; ?>')" Required>
                         <option value="" selected>Selecciona una Ciudad</option>
                         <?php
                         if (!empty($region)) {
@@ -156,15 +156,15 @@
                     </select>
                 </div>
                 <script>
-                    function marcarComuna(ciudad, email, region, id_maquinaria, link_foto) {
+                    function marcarComuna(ciudad, id_usuario, region, id_maquinaria, link_foto) {
                         // alert("Hola");
                         var region = region;
-                        var email = email;
+                        var id_usuario = id_usuario;
                         var ciudad = ciudad;
                         var link_foto = link_foto;
                         var id_maquinaria = id_maquinaria;
-                        if (region != "" && email != "" && ciudad != "" && id_maquinaria != "" && link_foto != "") {
-                            window.location.href = "editarMaquinaria.php?email=" + email + "&region=" + region + "&ciudad=" + ciudad + "&id_maquinaria=" + id_maquinaria + "&link=" + link_foto;
+                        if (region != "" && id_usuario != "" && ciudad != "" && id_maquinaria != "" && link_foto != "") {
+                            window.location.href = "editarMaquinaria.php?id_usuario=" + id_usuario + "&region=" + region + "&ciudad=" + ciudad + "&id_maquinaria=" + id_maquinaria + "&link=" + link_foto;
                         } else
                             alert('No ha seleccionado ninguna Ciudad');
                         //document.location.href="modificarEstado.php?id="+id;
@@ -266,7 +266,7 @@
                 </div>
                 <div class="d-flex input margenBoton">
                     <button type="submit" class="btn btn-success" id="btnIngresarDireccion" name="btnIngresarDireccion">Guardar Cambios</button>&nbsp;&nbsp;
-                    <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='crudMaquinaria.php?email=<?php echo $email; ?>'">
+                    <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='crudMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>'">
                 </div>
             </form>
             <!-- Optional JavaScript; choose one of the two! -->

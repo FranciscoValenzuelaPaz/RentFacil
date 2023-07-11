@@ -5,12 +5,13 @@ include("../../../Header-Footer/header5.php");
 <?php
 
 //capturo los datos del formulario
-$email = $_POST["email"];
+$id_usuario = $_POST["id_usuario"];
 $titulo = $_POST["titulo"];
 $ubicacion = $_POST["ubicacion"];
 $id_comuna = $_POST["id_comuna"];
 $fechaFormulario = $_POST["fecha"];
 $montoArriendo = $_POST["montoArriendo"];
+$montoArriendo2 = $_POST["montoArriendo2"];
 $descripcion = $_POST["descripcion"];
 
 
@@ -32,7 +33,7 @@ if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] 
     $mensaje = "formato_invalido";
     echo '
             <script>
-                    window.location="../../../Servicios/Estacionamiento/Usuario/registrarEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Estacionamiento/Usuario/registrarEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
 }
 
@@ -42,21 +43,21 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
 
     // Reemplazar por PDO
     //generamos consulta para actualizar los datos en la base de datos
-    $sql = "INSERT INTO tabla_estacionamientos (titulo, descripcion, fecha, correo, ubicacion, id_comuna, montoArriendo, link_foto) VALUES
-    ( '$titulo ', '$descripcion', '$fechaFormulario', '$email', '$ubicacion', '$id_comuna', '$montoArriendo', '$linkFoto')";
+    $sql = "INSERT INTO tabla_estacionamientos (titulo, descripcion, fecha, id_usuario, ubicacion, id_comuna, montoArriendo,montoArriendo2, link_foto) VALUES
+    ( '$titulo ', '$descripcion', '$fechaFormulario', '$id_usuario', '$ubicacion', '$id_comuna', '$montoArriendo', '$montoArriendo2', '$linkFoto')";
 
     //creo variables de resultado 
     if ($dbh->exec($sql)) {
         $mensaje = 'registrado';
         echo '
             <script>
-                    window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     } else {
         $mensaje = 'error_registrar';
         echo '
             <script>
-                    window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     }
 } else {
@@ -65,7 +66,7 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
     echo $mensaje;
     echo '
     <script>
-            window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+            window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
     </script>';
 }
 ?>

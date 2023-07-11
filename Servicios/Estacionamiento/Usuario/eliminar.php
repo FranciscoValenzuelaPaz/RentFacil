@@ -1,12 +1,12 @@
 <?php
  include("../../../Header-Footer/header5.php");
 
- if(isset($_GET['email']) && isset($_GET['id_estacionamiento']) && isset($_GET['link'])){
-    $email = $_GET['email'];
+ if(isset($_GET['id_usuario']) && isset($_GET['id_estacionamiento']) && isset($_GET['link'])){
+    $id_usuario = $_GET['id_usuario'];
     $id_estacionamiento = $_GET['id_estacionamiento'];
     $link_foto = $_GET['link'];
  }else{
-    $email = '';
+    $id_usuario = '';
     $id_estacionamiento = '';
     $link_foto = '';
  }
@@ -34,12 +34,12 @@
          $mensaje = 'eliminado';
          echo '
              <script>
-                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';   
      }else{
          $mensaje = 'error_eliminar';
          echo '
              <script>
-                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';  
      }

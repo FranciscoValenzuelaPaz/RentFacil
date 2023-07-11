@@ -7,10 +7,10 @@
     <div class="container contenedor">
       <?php
       include("../../../Header-Footer/header5.php");
-      if (isset($_GET['email'])) {
-        $email = $_GET['email'];
+      if (isset($_GET['id_usuario'])) {
+        $id_usuario = $_GET['id_usuario'];
       } else {
-        $email = '';
+        $id_usuario = '';
       }
       if (isset($_GET['mensaje'])) {
         $mensaje = $_GET['mensaje'];
@@ -68,13 +68,13 @@
         <div class="fondoformulario ">
           <div class="fs-3 margen">REGISTRAR MAQUINARIAS</div>
 
-          <button type="button" class="btn btn-success " onclick="location='registrarMaquinaria.php?email=<?php echo $email ?>'">Registrar</button>
+          <button type="button" class="btn btn-success " onclick="location='registrarMaquinaria.php?id_usuario=<?php echo $id_usuario ?>'">Registrar</button>
 
 
           <?php
-          //array con informacion de las direcciones del usuario
+          
           $arrayMaquinarias = array();
-          $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as D JOIN tabla_comunas as Cu ON D.id_comuna = Cu.id_comuna WHERE D.correo='$email'");
+          $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as D JOIN tabla_comunas as Cu ON D.id_comuna = Cu.id_comuna WHERE D.id_usuario='$id_usuario' AND D.eliminado=FALSE");
           // Especificamos el fetch mode antes de llamar a fetch()
           $stmt->setFetchMode(PDO::FETCH_ASSOC);
           // Ejecutamos
@@ -83,7 +83,6 @@
           while ($row = $stmt->fetch()) {
             $arrayMaquinarias[] = $row;
           }
-          //print_r($arrayMaquinarias);
 
 
 
@@ -96,7 +95,7 @@
           <?php if (!empty($arrayMaquinarias)) { ?>
             <div class="fs-3 margen">LISTA DE MAQUINARIAS</div>
 
-            <button class="btn btn-success" onclick="location='crudMaquinaria.php?email=<?php echo $email ?>'">Actualizar Registros</button>
+            <button class="btn btn-success" onclick="location='crudMaquinaria.php?id_usuario=<?php echo $id_usuario ?>'">Actualizar Registros</button>
 
             <div class="table-responsive">
               <table class="table table-hover">
@@ -169,8 +168,8 @@
                 <td>
                   <div><?php echo $arrayEstado[$maquinaria['estado']]; ?>
                 </td>
-                <td><a href="editarMaquinaria.php?email=<?php echo $email; ?>&id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>&link=<?php echo $maquinaria['link_foto']; ?>"><button class="btn btn-success">Editar</button></a></td>
-                <td><a href="eliminar.php?email=<?php echo $email; ?>&id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>&link=<?php echo $maquinaria['link_foto']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
+                <td><a href="editarMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>&id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>&link=<?php echo $maquinaria['link_foto']; ?>"><button class="btn btn-success">Editar</button></a></td>
+                <td><a href="eliminar.php?id_usuario=<?php echo $id_usuario; ?>&id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>&link=<?php echo $maquinaria['link_foto']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
               </tr>
             </tbody>
           <?php } ?>

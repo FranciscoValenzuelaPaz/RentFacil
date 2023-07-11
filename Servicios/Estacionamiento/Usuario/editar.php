@@ -8,13 +8,14 @@ include("../../../Header-Footer/header5.php");
 
 $link_foto = $_POST["link_foto"];
 $id_estacionamiento = $_POST["id_estacionamiento"];
-$email = $_POST["email"];
+$id_usuario = $_POST["id_usuario"];
 $titulo = $_POST["titulo"];
 
 $ubicacion = $_POST["ubicacion"];
 $id_comuna = $_POST["id_comuna"];
 
 $montoArriendo = $_POST["montoArriendo"];
+$montoArriendo2 = $_POST["montoArriendo2"];
 $descripcion = $_POST["descripcion"];
 $mensaje = '';
 
@@ -57,7 +58,7 @@ if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea
         $mensaje = "formato_invalido";
         echo '
                 <script>
-                        window.location="../../../Servicios/Estacionamiento/Usuario/editarEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                        window.location="../../../Servicios/Estacionamiento/Usuario/editarEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
                 </script>';
     }
 }
@@ -70,19 +71,19 @@ if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea
 // Reemplazar por PDO
 //generamos consulta para actualizar los datos en la base de datos
 $query = $dbh->prepare("UPDATE tabla_estacionamientos SET titulo = ?, descripcion = ?, ubicacion = ?, id_comuna = ?,
-     montoArriendo = ? WHERE id_estacionamiento = ?;");
-$resultado = $query->execute([$titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $id_estacionamiento]); # Pasar en el mismo orden de los ?
+     montoArriendo = ?,montoArriendo2 = ? WHERE id_estacionamiento = ?;");
+$resultado = $query->execute([$titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $montoArriendo2, $id_estacionamiento]); # Pasar en el mismo orden de los ?
 if ($resultado === TRUE) {
     $mensaje = "editado";
     echo '
              <script>
-                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';
 } else {
     $mensaje = "error_editar";
     echo '
              <script>
-                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';
 }
 

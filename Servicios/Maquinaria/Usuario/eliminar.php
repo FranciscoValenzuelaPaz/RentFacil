@@ -1,12 +1,12 @@
 <?php
  include("../../../Header-Footer/header5.php");
 
- if(isset($_GET['email']) && isset($_GET['id_maquinaria']) && isset($_GET['link'])){
-    $email = $_GET['email'];
+ if(isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['link'])){
+    $id_usuario = $_GET['id_usuario'];
     $id_maquinaria = $_GET['id_maquinaria'];
     $link_foto = $_GET['link'];
  }else{
-    $email = '';
+    $id_usuario = '';
     $id_maquinaria = '';
     $link_foto = '';
  }
@@ -34,12 +34,12 @@
          $mensaje = 'eliminado';
          echo '
              <script>
-                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';   
      }else{
          $mensaje = 'error_eliminar';
          echo '
              <script>
-                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';  
      }

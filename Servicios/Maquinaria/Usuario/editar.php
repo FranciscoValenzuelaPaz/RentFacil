@@ -8,7 +8,7 @@ include("../../../Header-Footer/header5.php");
 
 $link_foto = $_POST["link_foto"];
 $id_maquinaria = $_POST["id_maquinaria"];
-$email = $_POST["email"];
+$id_usuario = $_POST["id_usuario"];
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
 $ubicacion = $_POST["ubicacion"];
@@ -58,7 +58,7 @@ if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea
         $mensaje = "formato_invalido";
         echo '
                 <script>
-                        window.location="../../../Servicios/Maquinaria/Usuario/editarMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                        window.location="../../../Servicios/Maquinaria/Usuario/editarMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
                 </script>';
     }
 }
@@ -77,13 +77,13 @@ if ($resultado === TRUE) {
     $mensaje = "editado";
     echo '
              <script>
-                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';
 } else {
     $mensaje = "error_editar";
     echo '
              <script>
-                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
              </script>';
 }
 

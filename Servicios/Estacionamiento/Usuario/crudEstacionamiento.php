@@ -6,10 +6,10 @@
   <body class="body">
     <?php
     include("../../../Header-Footer/header5.php");
-    if (isset($_GET['email'])) {
-      $email = $_GET['email'];
+    if (isset($_GET['id_usuario'])) {
+      $id_usuario = $_GET['id_usuario'];
     } else {
-      $email = '';
+      $id_usuario = '';
     }
     if (isset($_GET['mensaje'])) {
       $mensaje = $_GET['mensaje'];
@@ -66,11 +66,11 @@
     <div class="control1 margen">
       <div class="fondoformulario">
         <div class="fs-3 margen">REGISTRAR ESTACIONAMIENTO</div>
-        <button type="button" class="btn btn-success" onclick="location='registrarEstacionamiento.php?email=<?php echo $email ?>'">Registrar</button>
+        <button type="button" class="btn btn-success" onclick="location='registrarEstacionamiento.php?id_usuario=<?php echo $id_usuario ?>'">Registrar</button>
         <?php
         //array con informacion de las direcciones del usuario
         $arrayEstacionamientos = array();
-        $stmt = $dbh->prepare("SELECT * FROM tabla_estacionamientos WHERE correo='$email'");
+        $stmt = $dbh->prepare("SELECT * FROM tabla_estacionamientos WHERE id_usuario='$id_usuario' AND eliminado=FALSE");
         // Especificamos el fetch mode antes de llamar a fetch()
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         // Ejecutamos
@@ -89,7 +89,7 @@
 
         <?php if (!empty($arrayEstacionamientos)) { ?>
           <div class="fs-3 margen">LISTA DE ESTACIONAMIENTOS</div>
-          <button class="btn btn-success fin" onclick="location='crudEstacionamiento.php?email=<?php echo $email ?>'">Actualizar Registros</button>
+          <button class="btn btn-success fin" onclick="location='crudEstacionamiento.php?id_usuario=<?php echo $id_usuario ?>'">Actualizar Registros</button>
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
@@ -98,7 +98,8 @@
                   <th scope="col">Fecha de Publicación</th>
                   <th scope="col">Ubicación</th>
                   <th scope="col">Región/Ciudad/Comuna</th>
-                  <th scope="col">Monto de Arriendo</th>
+                  <th scope="col">Monto de Arriendo x Día</th>
+                  <th scope="col">Monto de Arriendo x Hora</th>
                   <th scope="col">Foto</th>
                   <th scope="col">Descripción</th>
                   <th scope="col">Estado</th>
@@ -145,6 +146,9 @@
                   <td>
                     <div class=""><?php echo "$" . $estacionamiento['montoArriendo']; ?></div>
                   </td>
+                  <td>
+                    <div class=""><?php echo "$" . $estacionamiento['montoArriendo2']; ?></div>
+                  </td>
                   <td><a href="<?php echo $estacionamiento['link_foto']; ?>" target="_blank"><img src="<?php echo $estacionamiento['link_foto']; ?>" alt="fotoEstacionamientoUsuario" width="150" height="120"></a></td>
                   <td>
                     <div class="descripcion overflow-y-scroll"><?php echo $estacionamiento['descripcion']; ?></div>
@@ -152,8 +156,8 @@
                   <td>
                     <div><?php echo $arrayEstado[$estacionamiento['estado']]; ?>
                   </td>
-                  <td><a href="editarEstacionamiento.php?email=<?php echo $email; ?>&id_estacionamiento=<?php echo $estacionamiento['id_estacionamiento']; ?>&link=<?php echo $estacionamiento['link_foto']; ?>"><button class="btn btn-success">Editar</button></a></td>
-                  <td><a href="eliminar.php?email=<?php echo $email; ?>&id_estacionamiento=<?php echo $estacionamiento['id_estacionamiento']; ?>&link=<?php echo $estacionamiento['link_foto']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
+                  <td><a href="editarEstacionamiento.php?id_usuario=<?php echo $id_usuario; ?>&id_estacionamiento=<?php echo $estacionamiento['id_estacionamiento']; ?>&link=<?php echo $estacionamiento['link_foto']; ?>"><button class="btn btn-success">Editar</button></a></td>
+                  <td><a href="eliminar.php?id_usuario=<?php echo $id_usuario; ?>&id_estacionamiento=<?php echo $estacionamiento['id_estacionamiento']; ?>&link=<?php echo $estacionamiento['link_foto']; ?>"><button class="btn btn-danger" onclick="return confirm('¿Está Segur@ de eliminar este Registro?')">Eliminar</button></a></td>
                 </tr>
 
               </tbody>

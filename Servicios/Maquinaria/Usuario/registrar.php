@@ -5,7 +5,7 @@ include("../../../Header-Footer/header5.php");
 <?php
 
 //capturo los datos del formulario
-$email = $_POST["email"];
+$id_usuario = $_POST["id_usuario"];
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
 $ubicacion = $_POST["ubicacion"];
@@ -31,7 +31,7 @@ if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] 
     $mensaje = "formato_invalido";
     echo '
             <script>
-                    window.location="../../../Servicios/Maquinaria/Usuario/registrarMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Maquinaria/Usuario/registrarMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
 }
 
@@ -41,21 +41,21 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
 
     // Reemplazar por PDO
     //generamos consulta para actualizar los datos en la base de datos
-    $sql = "INSERT INTO tabla_maquinarias (titulo, descripcion ,tipo , fecha, correo, bencina, ubicacion, id_comuna, montoArriendo, link_foto) VALUES
-    ( '$titulo ', '$descripcion', '$tipo', '$fechaFormulario', '$email', '$bencina', '$ubicacion', '$id_comuna', '$montoArriendo', '$linkFoto')";
+    $sql = "INSERT INTO tabla_maquinarias (titulo, descripcion ,tipo , fecha, id_usuario, bencina, ubicacion, id_comuna, montoArriendo, link_foto) VALUES
+    ( '$titulo ', '$descripcion', '$tipo', '$fechaFormulario', '$id_usuario', '$bencina', '$ubicacion', '$id_comuna', '$montoArriendo', '$linkFoto')";
 
     //creo variables de resultado 
     if ($dbh->exec($sql)) {
         $mensaje = 'registrado';
         echo '
             <script>
-                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     } else {
         $mensaje = 'error_registrar';
         echo '
             <script>
-                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     }
 } else {
@@ -64,7 +64,7 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
     echo $mensaje;
     echo '
             <script>
-                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?email=' . $email . '&mensaje=' . $mensaje . '";
+                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
 }
 ?>

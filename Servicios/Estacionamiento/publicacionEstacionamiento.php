@@ -3,10 +3,10 @@
 </style>
 <?php
 include("../../Header-Footer/header6.php");
-if (isset($_GET['email'])) {
-  $email = $_GET['email'];
+if (isset($_GET['id_usuario'])) {
+  $id_usuario = $_GET['id_usuario'];
 } else {
-  $email = '';
+  $id_usuario = '';
 }
 if (isset($_GET['mensaje'])) {
   $mensaje = $_GET['mensaje'];
@@ -14,7 +14,7 @@ if (isset($_GET['mensaje'])) {
   $mensaje = '';
 }
 
-
+$tipo_servicio = 2;
 //filtros para busqueda
 $buscar1 = '';
 
@@ -28,7 +28,7 @@ if (isset($_POST['btn_filtrar'])) {
 }
 //consulta para traer los datos de todas las maquinarias.
 $arrayEstacionamiento = array();
-$stmt = $dbh->prepare("SELECT * FROM tabla_estacionamientos WHERE 1=1 $buscar1 AND estado=1");
+$stmt = $dbh->prepare("SELECT * FROM tabla_estacionamientos WHERE 1=1 $buscar1 AND estado=1 AND eliminado=FALSE");
 // Especificamos el fetch mode antes de llamar a fetch()
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 // Ejecutamos
@@ -118,7 +118,7 @@ $arrayEstado = array("Dummy", "Disponible", "Arrendado");
       </select>&nbsp;&nbsp;
 
       <button class="btn btn-success" name="btn_filtrar" type="submit">Filtrar</button>&nbsp;&nbsp;
-      <button class="btn btn-success" onclick="location='publicacionEstacionamiento.php?email=<?php echo $email ?>'">Refrescar</button>
+      <button class="btn btn-success" onclick="location='publicacionEstacionamiento.php?id_usuario=<?php echo $id_usuario ?>'">Refrescar</button>
     </form>
   </div>
 
@@ -152,15 +152,17 @@ $arrayEstado = array("Dummy", "Disponible", "Arrendado");
           <p>Estado: <?php echo $arrayEstado[$estacionamiento['estado']]; ?></p>
           <p>Fecha de Publicación: <?php echo $estacionamiento['fecha']; ?></p>
           <p><?php echo "Descripción: " . $estacionamiento['descripcion']; ?></p>
-          <p><?php echo "Monto Arriendo: $" . $estacionamiento['montoArriendo']; ?></p>
+          <p><?php echo "Monto Arriendo x Día: $" . $estacionamiento['montoArriendo']; ?></p>
+          <p><?php echo "Monto Arriendo x Hora: $" . $estacionamiento['montoArriendo2']; ?></p>
 
           <div class="d-flex">
-            <div><?php if ($estacionamiento['correo'] != $email) { ?>
-              <a class="btn btn-success btn-lg margen" href="#" role="button">Contratar</a></div>
+            <div><?php if ($estacionamiento['id_usuario'] != $id_usuario) { ?>
+              <a class="btn btn-success btn-lg margen" href="../../contratos/formularioContrato.php?id_estacionamiento=<?php echo $estacionamiento['id_estacionamiento']; ?>
+                &tipo_servicio=<?php echo $tipo_servicio; ?>&id_usuario=<?php echo $id_usuario; ?>" role="button">Contratar</a></div>
               <?php }else{ ?>
                 <a class="btn btn-success btn-lg margen disabled" href="#" role="button">Contratar</a></div>
                 <?php } ?>
-            <div><?php if ($estacionamiento['correo'] == $email) { ?><a class="btn btn-success btn-lg margen" href="Usuario/crudestacionamiento.php?email=<?php echo $email; ?>" role="button">Editar</a><?php } ?>
+            <div><?php if ($estacionamiento['id_usuario'] == $id_usuario) { ?><a class="btn btn-success btn-lg margen" href="Usuario/crudestacionamiento.php?id_usuario=<?php echo $id_usuario; ?>" role="button">Editar</a><?php } ?>
             </div>
           </div>
         </div>

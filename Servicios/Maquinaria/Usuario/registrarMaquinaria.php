@@ -10,10 +10,10 @@
         ?>
         <?php
 
-        if (isset($_GET['email'])) {
-            $email = $_GET['email'];
+        if (isset($_GET['id_usuario'])) {
+            $id_usuario = $_GET['id_usuario'];
         } else {
-            $email = "";
+            $id_usuario = "";
         }
         if (isset($_GET['mensaje'])) {
             $mensaje = $_GET['mensaje'];
@@ -42,12 +42,12 @@
             }
         </script>
         <form class="fondo" name="form1" action="registrar.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="email" value="<?php echo $email; ?>">
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
             <div class="fs-3 label ">INGRESAR MAQUINARIA</div>
             <div class="form-group input">
                 <label class="label" for="id_region">Región</label>
 
-                <select class="form-select input2" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $email; ?>')" Required>
+                <select class="form-select input2" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $id_usuario; ?>')" Required>
                     <option value="" selected>Selecciona una Región</option>
                     <?php
                     $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
@@ -68,12 +68,12 @@
 
             </div>
             <script>
-                function marcarCiudad(region, email) {
+                function marcarCiudad(region, id_usuario) {
                     // alert("Hola");
                     var region = region;
-                    var email = email;
-                    if (region != "" && email != "") {
-                        window.location.href = "registrarMaquinaria.php?email=" + email + "&region=" + region;
+                    var id_usuario = id_usuario;
+                    if (region != "" && id_usuario != "") {
+                        window.location.href = "registrarMaquinaria.php?id_usuario=" + id_usuario + "&region=" + region;
                     } else
                         alert('No ha seleccionado ninguna Región');
                     //document.location.href="modificarEstado.php?id="+id;
@@ -82,7 +82,7 @@
             <div class="form-group input">
                 <label class="label" for="id_ciudad">Ciudad</label>
 
-                <select class="form-select " aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $email; ?>','<?php echo $region; ?>')" Required>
+                <select class="form-select " aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $id_usuario; ?>','<?php echo $region; ?>')" Required>
                     <option class="input" value="" selected>Selecciona una Ciudad</option>
                     <?php
                     if (!empty($region)) {
@@ -107,13 +107,13 @@
                 </select>
             </div>
             <script>
-                function marcarComuna(ciudad, email, region) {
+                function marcarComuna(ciudad, id_usuario, region) {
                     // alert("Hola");
                     var region = region;
-                    var email = email;
+                    var id_usuario = id_usuario;
                     var ciudad = ciudad;
-                    if (region != "" && email != "" && ciudad != "") {
-                        window.location.href = "registrarMaquinaria.php?email=" + email + "&region=" + region + "&ciudad=" + ciudad;
+                    if (region != "" && id_usuario != "" && ciudad != "") {
+                        window.location.href = "registrarMaquinaria.php?id_usuario=" + id_usuario + "&region=" + region + "&ciudad=" + ciudad;
                     } else
                         alert('No ha seleccionado ninguna Ciudad');
                     //document.location.href="modificarEstado.php?id="+id;
@@ -205,7 +205,7 @@
             </div>
             <div class="d-flex ">
                 <button type="submit" class="btn btn-success fin" id="btnIngresarDireccion" name="btnIngresarDireccion">Ingresar</button>&nbsp;&nbsp;
-                <input type="button" class="btn btn-secondary fin" name="cancelar" value="Cancelar" onclick="location.href='crudMaquinaria.php?email=<?php echo $email; ?>'">
+                <input type="button" class="btn btn-secondary fin" name="cancelar" value="Cancelar" onclick="location.href='crudMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>'">
             </div>
         </form>
         <!-- Optional JavaScript; choose one of the two! -->

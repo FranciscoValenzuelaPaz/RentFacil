@@ -6,10 +6,10 @@
   <div class="container contenedor">
     <?php
     include("../../Header-Footer/header6.php");
-    if (isset($_GET['email'])) {
-      $email = $_GET['email'];
+    if (isset($_GET['id_usuario'])) {
+      $id_usuario = $_GET['id_usuario'];
     } else {
-      $email = '';
+      $id_usuario = '';
     }
     if (isset($_GET['mensaje'])) {
       $mensaje = $_GET['mensaje'];
@@ -39,7 +39,7 @@
 
     //consulta para traer los datos de todas las maquinarias.
     $arrayMaquinarias = array();
-    $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias WHERE 1=1 $buscar1 $buscar2 $buscar3 AND estado=1");
+    $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias WHERE 1=1 $buscar1 $buscar2 $buscar3 AND estado=1 AND eliminado=FALSE");
     // Especificamos el fetch mode antes de llamar a fetch()
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     // Ejecutamos
@@ -146,7 +146,7 @@
           ?>
         </select>&nbsp;&nbsp;
         <button class="btn btn-success" name="btn_filtrar" type="submit">Filtrar</button>&nbsp;&nbsp;
-        <button class="btn btn-success" onclick="location='publicacionMaquinaria.php?email=<?php echo $email ?>'">Refrescar</button>
+        <button class="btn btn-success" onclick="location='publicacionMaquinaria.php?id_usuario=<?php echo $id_usuario ?>'">Refrescar</button>
       </form>
     </div>
 
@@ -189,7 +189,7 @@
             <!-- OJO -->
             <!-- OJO -->
             <!-- OJO -->
-            <p><?php echo $maquinaria['descripcion']; ?></p>
+            <p><?php echo "Descripción: ".$maquinaria['descripcion']; ?></p>
             <!-- OJO -->
             <!-- OJO -->
             <!-- OJO -->
@@ -197,20 +197,21 @@
             <!-- OJO -->
 
             <div class="d-flex">
-              <div><?php if ($maquinaria['correo'] != $email) { ?>
+              <div><?php if ($maquinaria['id_usuario'] != $id_usuario) { ?>
                 <a class="btn btn-success btn-lg margen" href="../../cotizaciones/formularioCotizar.php?id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>
-                &tipo_servicio=<?php echo $tipo_servicio; ?>&email=<?php echo $email; ?>" role="button">Cotizar</a></div>
+                &tipo_servicio=<?php echo $tipo_servicio; ?>&id_usuario=<?php echo $id_usuario; ?>" role="button">Cotizar</a></div>
                 <?php }else{ ?>
                 <a class="btn btn-success btn-lg margen disabled" href="#" role="button">Cotizar</a></div>
                 <?php } ?>
 
-              <div><?php if ($maquinaria['correo'] != $email) { ?>
-                <a class="btn btn-success btn-lg margen" href="#" role="button">Contratar</a></div>
+              <div><?php if ($maquinaria['id_usuario'] != $id_usuario) { ?>
+                <a class="btn btn-success btn-lg margen" href="../../contratos/formularioContrato.php?id_maquinaria=<?php echo $maquinaria['id_maquinaria']; ?>
+                &tipo_servicio=<?php echo $tipo_servicio; ?>&id_usuario=<?php echo $id_usuario; ?>" role="button">Contratar</a></div>
                 <?php }else{ ?>  
                   <a class="btn btn-success btn-lg margen disabled" href="#" role="button">Contratar</a></div>
                   <?php } ?>
-              <div><?php if ($maquinaria['correo'] == $email) { ?>
-                  <a class="btn btn-success btn-lg margen" href="Usuario/crudMaquinaria.php?email=<?php echo $email; ?>" role="button">Editar</a>
+              <div><?php if ($maquinaria['id_usuario'] == $id_usuario) { ?>
+                  <a class="btn btn-success btn-lg margen" href="Usuario/crudMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>" role="button">Editar</a>
                 <?php } ?>
               </div>
             </div>
