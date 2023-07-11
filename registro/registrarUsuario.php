@@ -171,6 +171,7 @@ if (isset($_GET['mensaje'])) {
       <div>
         <button type="submit" class="btn btn-success input2">Ingresar</button>
       </div>
+      </form>
       <div class="fin">
         <a href="../inicioSesion/iniciarSesion.php" class="link-secondary">Ya tienes una Cuenta. Inicia Sesión</a>
       </div>
