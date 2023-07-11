@@ -25,9 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mostramos los resultados
         while ($row = $stmt->fetch()) {
             $estado = $row['estado'];
+            $id_usuario = $row['id_usuario'];
+            $tipo = $row['tipo'];
         }
         if ($estado == 2) {
-            echo '<script>window.location="../inicioHome/inicio.php?email=' . $email . '"</script>';
+            if($tipo == 2){
+                echo '<script>window.location="../inicioHome/inicioAdmin.php?id_usuario=' . $id_usuario . '"</script>';
+            }else{
+                echo '<script>window.location="../inicioHome/inicio.php?id_usuario=' . $id_usuario . '"</script>';
+            }
+           
         } else {
             if ($estado == 1) {
                 $mensaje = "sin_verificar";
