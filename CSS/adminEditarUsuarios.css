@@ -1,0 +1,28 @@
+body {
+    margin-top: 3% !important;
+    margin-bottom: 3% !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+    background-image: url("../images/fondo_formulario.png");
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.label {
+    margin-top: 2% !important;
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: white !important;
+}
+.input2{
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: black !important;
+  }
+
+.margenBoton {
+    margin-left: 45%;
+    margin-top: 2%;
+}

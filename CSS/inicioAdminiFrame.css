@@ -1,0 +1,32 @@
+.caja {
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: 10% !important;
+    margin-left: 10% !important;
+}
+
+.lista {
+    list-style: none !important;
+}
+
+.boton {
+    padding: 10px !important;
+    font-size: 20px !important;
+    width: 180px !important;
+    height: 170px !important;
+    margin-left: 80px !important;
+
+}
+
+.icono {
+    font-size: 60px !important;
+}
+
+body {
+    background-image: url("../images/fondo_formulario.png");
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 15px !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
