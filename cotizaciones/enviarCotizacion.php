@@ -5,8 +5,8 @@ require '../SendMail/vendor/autoload.php';
 
 $arrayBencina = array("Con Bencina","Sin Bencina");
 
-$email_usuario = $_POST['email'];
-$correo_usuario_publicacion = $_POST['correo_usuario_publicacion'];
+$id_usuario = $_POST['id_usuario'];
+$id_usuario_publicacion = $_POST['id_usuario_publicacion'];
 $id_servicio = $_POST['id_servicio'];
 $monto = $_POST['monto'];
 $tipo_servicio = $_POST['tipo_servicio'];
@@ -38,7 +38,7 @@ $ubicacion_maquinaria = $arrayInfoMaquinaria[0]['ubicacion'];
 
 //consulta para traer la información del Usuario Cotizador seleccionada
 $arrayUsuario = array();
-$stmt = $dbh->prepare("SELECT * FROM tabla_usuario WHERE email='$email_usuario'");
+$stmt = $dbh->prepare("SELECT * FROM tabla_usuario WHERE id_usuario='$id_usuario'");
 // Especificamos el fetch mode antes de llamar a fetch()
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 // Ejecutamos
@@ -47,14 +47,14 @@ $stmt->execute();
 while ($row = $stmt->fetch()) {
   $arrayUsuario[] = $row;
 }
-
+$correo_usuario = $arrayUsuario[0]['email'];
 $nombreUsuario = $arrayUsuario[0]['nombre']." ".$arrayUsuario[0]['apellido'];
 
 
  //array con informacion de las direcciones del usuario
  $arrayUbicacion = array();
- $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones as D JOIN tabla_regiones as R ON D.id_region=R.id_region JOIN 
-   tabla_ciudades as Ci ON D.id_ciudad=Ci.id_ciudad JOIN tabla_comunas as Cu ON D.id_comuna = Cu.id_comuna WHERE D.correo='$email_usuario'");
+ $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as M JOIN tabla_comunas as COMUNA ON M.id_comuna = COMUNA.id_comuna JOIN tabla_ciudades AS 
+ CIUDAD ON COMUNA.id_ciudad = CIUDAD.id_ciudad JOIN tabla_regiones AS REGION ON CIUDAD.id_region=REGION.id_region WHERE M.id_maquinaria='$id_servicio'");
  // Especificamos el fetch mode antes de llamar a fetch()
  $stmt->setFetchMode(PDO::FETCH_ASSOC);
  // Ejecutamos
@@ -78,10 +78,14 @@ $diferencia = $diff->days;   //este numero se multiplica por el monto para calcu
 $total = $monto * $diferencia;
 
 
+
+//!!!CONDIONCIONAR QUE FECHA DESDE SEA MENOR A FECHA HASTA EN EL CORREO!!!
+
+
 //generamos consulta para actualizar los datos en la base de datos
-$sql = "INSERT INTO tabla_cotizaciones (correo_usuario_publicacion, correo_usuario_cotizacion ,id_servicio , tipo_servicio,
+$sql = "INSERT INTO tabla_cotizaciones (id_usuario_publicacion, id_usuario ,id_servicio , tipo_servicio,
  fecha_cotizacion, fecha_desde, fecha_hasta, total) VALUES
-( '$correo_usuario_publicacion ', '$email_usuario', '$id_servicio', '$tipo_servicio', '$fecha', '$fecha_desde', '$fecha_hasta', '$total')";
+( '$id_usuario_publicacion ', '$id_usuario', '$id_servicio', '$tipo_servicio', '$fecha', '$fecha_desde', '$fecha_hasta', '$total')";
 
     if ($dbh->exec($sql)) {
         //mandaremos un correo al usuario para cambiar el estado del usuario de pendiente a desbloqueado
@@ -121,13 +125,13 @@ $sql = "INSERT INTO tabla_cotizaciones (correo_usuario_publicacion, correo_usuar
         $mensaje = 'enviado';
         echo '
             <script>
-                    window.location="../Servicios/Maquinaria/publicacionMaquinaria.php?email=' . $email_usuario . '&mensaje=' . $mensaje . '";
+                    window.location="../Servicios/Maquinaria/publicacionMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     } else {
         $mensaje = 'error_enviar';
         echo '
             <script>
-                    window.location="../Servicios/Maquinaria/publicacionMaquinaria.php?email=' . $email_usuario . '&mensaje=' . $mensaje . '";
+                    window.location="../Servicios/Maquinaria/publicacionMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     }
 

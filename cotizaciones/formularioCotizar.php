@@ -8,18 +8,18 @@
     <div class="container contenedor">
         <?php
         include("../Header-Footer/header7.php");
-        if (isset($_GET['email']) && isset($_GET['id_maquinaria']) && isset($_GET['tipo_servicio'])) {
-            $email = $_GET['email'];
+        if (isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['tipo_servicio'])) {
+            $id_usuario = $_GET['id_usuario'];
             $id_maquinaria = $_GET['id_maquinaria'];
             $tipo_servicio = $_GET['tipo_servicio'];
         } else {
-            $email = '';
+            $id_usuario = '';
             $id_maquinaria = '';
             $tipo_servicio = '';
         }
 
 
-        // echo "email: " . $email . "<br>";
+        // echo "id_usuario: " . $id_usuario . "<br>";
         // echo "id_maquinaria: " . $id_maquinaria . "<br>";
         // echo "tipo_servicio: " . $tipo_servicio . "<br>";
 
@@ -27,7 +27,7 @@
         //consulta para traer información respecto a la publicación
 
         $arrayInfoPublicacion = array();
-        $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as M JOIN tabla_usuario as U ON M.correo=U.email WHERE M.id_maquinaria='$id_maquinaria'");
+        $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as M JOIN tabla_usuario as U ON M.id_usuario=U.id_usuario WHERE M.id_maquinaria='$id_maquinaria'");
         // Especificamos el fetch mode antes de llamar a fetch()
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         // Ejecutamos
@@ -38,17 +38,17 @@
         }
 
         $id_servicio = $id_maquinaria;
-        $correo_usuario_publicacion = $arrayInfoPublicacion[0]['email'];
+        $id_usuario_publicacion = $arrayInfoPublicacion[0]['id_usuario'];
         $monto = $arrayInfoPublicacion[0]['montoArriendo'];
 
-        // echo $correo_usuario_publicacion . "<br>";
+        // echo $id_usuario_publicacion . "<br>";
         // echo $monto;
 
         ?>
         <form name="form1" class="fondo" action="enviarCotizacion.php" method="POST">
             <div class="fs-3 titulo">COTIZACIÓN DE SERVICIO DE MAQUINARIAS</div>
-            <input class="input" type="hidden" name="email" value="<?php echo $email; ?>">
-            <input class="input" type="hidden" name="correo_usuario_publicacion" value="<?php echo $correo_usuario_publicacion; ?>">
+            <input class="input" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+            <input class="input" type="hidden" name="id_usuario_publicacion" value="<?php echo $id_usuario_publicacion; ?>">
             <input class="input" type="hidden" name="id_servicio" value="<?php echo $id_servicio; ?>">
             <input class="input" type="hidden" name="monto" value="<?php echo $monto; ?>">
             <input class="input" type="hidden" name="tipo_servicio" value="<?php echo $tipo_servicio; ?>">
@@ -63,7 +63,7 @@
             </div>
             <div class="d-flex margenBoton fin  ">
                 <button type="submit" class="btn btn-success " id="btnEnviarCotizacion" name="btnEnviarCotizacion">Enviar Cotización</button>&nbsp;
-                <input type="button" class="btn btn-secondary " name="cancelar" value="Cancelar" onclick="location.href='../Servicios/Maquinaria/publicacionMaquinaria.php?email=<?php echo $email; ?>'">
+                <input type="button" class="btn btn-secondary " name="cancelar" value="Cancelar" onclick="location.href='../Servicios/Maquinaria/publicacionMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>'">
             </div>
         </form>
     </div>
