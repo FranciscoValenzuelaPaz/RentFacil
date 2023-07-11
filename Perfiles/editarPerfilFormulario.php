@@ -5,17 +5,17 @@
   <?php
   include("../Header-Footer/header2.php");
 
-  if (isset($_GET['email'])) {
-    $email = $_GET['email'];
+  if (isset($_GET['id_usuario'])) {
+    $id_usuario = $_GET['id_usuario'];
   } else {
-    $email = '';
+    $id_usuario = '';
   }
   if (isset($_GET['mensaje'])) {
     $mensaje = $_GET['mensaje'];
   } else {
     $mensaje = '';
   }
-  $stmt = $dbh->prepare("SELECT * FROM tabla_usuario WHERE email='$email'");
+  $stmt = $dbh->prepare("SELECT * FROM tabla_usuario WHERE id_usuario='$id_usuario'");
   // Especificamos el fetch mode antes de llamar a fetch()
   $stmt->setFetchMode(PDO::FETCH_ASSOC);
   // Ejecutamos
@@ -26,7 +26,6 @@
     $nombre = $row["nombre"];
     $apellido = $row["apellido"];
     $telefono = $row["telefono"];
-    $id_usuario = $row["id_usuario"];
   }
   ?>
 
@@ -56,7 +55,6 @@
           <div class="izquierda">
 
             <form name="form1" action="editarPerfil.php" method="POST">
-              <input type="hidden" name="email" value="<?php echo $email; ?>">
               <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
               <div class="form-group margen">
                 <label for="nombre">Nombre</label>
@@ -90,7 +88,7 @@
         </div>
         <div class="col">
           <div class="derecha">
-            <iframe src="../Direcciones/crudDirecciones.php?email=<?php echo $email; ?>" frameborder="0" width="800" height="600"></iframe>
+            <iframe src="../Direcciones/crudDirecciones.php?id_usuario=<?php echo $id_usuario; ?>" frameborder="0" width="800" height="600"></iframe>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ include("../Header-Footer/header2.php");
 
 if(isset($_POST['btnEditarPerfil'])){
     //capturo los datos del formulario
-    $email = $_POST['email']; 
     $nombre = $_POST['nombre']; 
     $apellido = $_POST['apellido']; 
     $telefono = $_POST['telefono'];   
@@ -18,14 +17,14 @@ if(isset($_POST['btnEditarPerfil'])){
         $mensaje = "actualizado";
         echo '
             <script>
-                    window.location="editarPerfilFormulario.php?email='.$email.'&mensaje=' . $mensaje . '";
+                    window.location="editarPerfilFormulario.php?id_usuario='.$id_usuario.'&mensaje=' . $mensaje . '";
             </script>';
     } 
     else{
         $mensaje = "error_actualizar";
         echo '
             <script>
-                    window.location="editarPerfilFormulario.php?email='.$email.'&mensaje=' . $mensaje . '";
+                    window.location="editarPerfilFormulario.php?id_usuario='.$id_usuario.'&mensaje=' . $mensaje . '";
             </script>';
     } 
 }
