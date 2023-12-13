@@ -1,5 +1,7 @@
 <?php
 include("../Header-Footer/header4.php");
+include("../encriptarContrasena/encriptarClave.php");
+
 ?>
 
 <?php
@@ -9,9 +11,11 @@ include("../Header-Footer/header4.php");
 $link_foto = $_POST["link_foto"];
 $id_estacionamiento = $_POST["id_estacionamiento"];
 $id_usuario = $_POST["id_usuario"];
+$id_usuario_original = $desencriptar($id_usuario);
+
 $id_usuario_estacionamiento = $_POST["usuario"];
 $titulo = $_POST["titulo"];
-$fecha = date("Y-m-d H:i:s");
+$fecha_actual = date("Y-m-d H:i:s");
 $ubicacion = $_POST["ubicacion"];
 $id_comuna = $_POST["id_comuna"];
 
@@ -73,7 +77,7 @@ if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea
 //generamos consulta para actualizar los datos en la base de datos
 $query = $dbh->prepare("UPDATE tabla_estacionamientos SET id_usuario=?,titulo = ?, descripcion = ?, ubicacion = ?, id_comuna = ?,
      montoArriendo = ?,montoArriendo2 = ?,fecha_actualizacion = ?,usuario_actualizacion = ?   WHERE id_estacionamiento = ?;");
-$resultado = $query->execute([$id_usuario_estacionamiento, $titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $montoArriendo2,$fecha,$id_usuario, $id_estacionamiento]); # Pasar en el mismo orden de los ?
+$resultado = $query->execute([$id_usuario_estacionamiento, $titulo, $descripcion, $ubicacion, $id_comuna, $montoArriendo, $montoArriendo2,$fecha_actual,$id_usuario_original, $id_estacionamiento]); # Pasar en el mismo orden de los ?
 if ($resultado === TRUE) {
     $mensaje = "editado";
     echo '

@@ -1,8 +1,11 @@
 <?php
  include("../Header-Footer/header4.php");
+ include("../encriptarContrasena/encriptarClave.php");
 
  if(isset($_GET['id_usuario']) && isset($_GET['id_estacionamiento']) && isset($_GET['link'])){
     $id_usuario = $_GET['id_usuario'];
+    $id_usuario_original = $desencriptar($id_usuario);
+
     $id_estacionamiento = $_GET['id_estacionamiento'];
     $link_foto = $_GET['link'];
     $fecha = date("Y-m-d H:i:s");
@@ -19,7 +22,7 @@
 
   //generamos consulta para actualizar los datos en la base de datos
 $query = $dbh->prepare("UPDATE tabla_estacionamientos SET eliminado=?,fecha_eliminacion = ?,usuario_eliminacion = ?   WHERE id_estacionamiento = ?;");
-$resultado = $query->execute([$respuesta,$fecha,$id_usuario, $id_estacionamiento]); # Pasar en el mismo orden de los ?
+$resultado = $query->execute([$respuesta,$fecha,$id_usuario_original, $id_estacionamiento]); # Pasar en el mismo orden de los ?
 if ($resultado === TRUE) {
 $mensaje = "eliminado";
 echo '

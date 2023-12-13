@@ -72,11 +72,12 @@
         <script>
             var mensaje = "<?php echo $mensaje; ?>";
             if (mensaje == "formato_invalido") {
-                Swal.fire({
-                    html: `
-                    <p style="text-align:justify;">Formato de Archivo Inválido. Porfavor vuelve a intentarlo.</p>
-                    `,
-                });
+                // Swal.fire({
+                //     html: `
+                //     <p style="text-align:justify;">Formato de Archivo Inválido. Porfavor vuelve a intentarlo.</p>
+                //     `,
+                // });
+                alert("Formato de Archivo Inválido. Porfavor vuelve a intentarlo.")
             }
         </script>
 
