@@ -1,5 +1,7 @@
 <?php
 include("../Header-Footer/header4.php");
+include("../encriptarContrasena/encriptarClave.php");
+
 ?>
 
 <?php
@@ -9,12 +11,16 @@ include("../Header-Footer/header4.php");
 $link_foto = $_POST["link_foto"];
 $id_maquinaria = $_POST["id_maquinaria"];
 $id_usuario = $_POST["id_usuario"];
+$id_usuario_original = $desencriptar($id_usuario);
+
+// echo $id_usuario_original;
+
 $usuario = $_POST["usuario"];
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
 $ubicacion = $_POST["ubicacion"];
 $id_comuna = $_POST["id_comuna"];
-$fecha = date("Y-m-d H:i:s");
+$fecha_actual = date("Y-m-d H:i:s");
 $bencina = $_POST["bencina"];
 $montoArriendo = $_POST["montoArriendo"];
 $descripcion = $_POST["descripcion"];
@@ -73,19 +79,19 @@ if ($_FILES['link_foto']['size'] > 0) { //esto quiere decir que el usuario desea
 //generamos consulta para actualizar los datos en la base de datos
 $query = $dbh->prepare("UPDATE tabla_maquinarias SET id_usuario = ?, titulo = ?, descripcion = ?, tipo = ?, bencina = ?, ubicacion = ?, id_comuna = ?,
      montoArriendo = ?,fecha_actualizacion = ?,usuario_actualizacion = ? WHERE id_maquinaria = ?");
-$resultado = $query->execute([$usuario, $titulo, $descripcion, $tipo, $bencina, $ubicacion, $id_comuna, $montoArriendo,$fecha,$id_usuario, $id_maquinaria]); # Pasar en el mismo orden de los ?
+$resultado = $query->execute([$usuario, $titulo, $descripcion, $tipo, $bencina, $ubicacion, $id_comuna, $montoArriendo,$fecha_actual,$id_usuario_original, $id_maquinaria]); # Pasar en el mismo orden de los ?
 if ($resultado === TRUE) {
     $mensaje = "editado";
-    echo '
-             <script>
-                     window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
-             </script>';
+     echo '
+              <script>
+                      window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
+              </script>';
 } else {
     $mensaje = "error_editar";
-    echo '
-             <script>
-                     window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
-             </script>';
+     echo '
+              <script>
+                      window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
+              </script>';
 }
 
 

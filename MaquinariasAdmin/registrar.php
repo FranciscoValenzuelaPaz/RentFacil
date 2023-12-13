@@ -63,10 +63,10 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
     //var_dump($_FILES);
     $mensaje = "error_registrar";
     echo $mensaje;
-    echo '
-            <script>
-                    window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
-            </script>';
+//     echo '
+//             <script>
+//                     window.location="../MaquinariasAdmin/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
+//             </script>';
 }
 ?>
 <br><br>

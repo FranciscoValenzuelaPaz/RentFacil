@@ -1,8 +1,11 @@
 <?php
  include("../Header-Footer/header4.php");
+ include("../encriptarContrasena/encriptarClave.php");
 
  if(isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['link'])){
     $id_usuario = $_GET['id_usuario'];
+    $id_usuario_original = $desencriptar($id_usuario);
+
     $id_maquinaria = $_GET['id_maquinaria'];
     $link_foto = $_GET['link'];
     $respuesta = TRUE;
@@ -18,7 +21,7 @@
  //var_dump($_GET);
 
  $query = $dbh->prepare("UPDATE tabla_maquinarias SET eliminado = ?,fecha_eliminacion = ?,usuario_eliminacion = ? WHERE id_maquinaria = ?");
-$resultado = $query->execute([$respuesta,$fecha,$id_usuario, $id_maquinaria]); # Pasar en el mismo orden de los ?
+$resultado = $query->execute([$respuesta,$fecha,$id_usuario_original, $id_maquinaria]); # Pasar en el mismo orden de los ?
 if ($resultado === TRUE) {
 $mensaje = "eliminado";
 echo '

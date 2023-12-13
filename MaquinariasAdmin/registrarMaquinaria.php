@@ -1,13 +1,10 @@
 <style>
-    <?php include("../CSS/adminRegistrarMaquinaria.css"); ?>
+    <?php include("../CSS/adminRegistrarMaquinaria.css"); ?><?php include("../Header-Footer/header4.php"); ?>
 </style>
 <html>
 
-<body class="body">
+<body>
     <div class="container">
-        <?php
-        include("../Header-Footer/header4.php");
-        ?>
         <?php
 
         if (isset($_GET['id_usuario'])) {
@@ -34,16 +31,17 @@
         <script>
             var mensaje = "<?php echo $mensaje; ?>";
             if (mensaje == "formato_invalido") {
-                Swal.fire({
-                    html: `
-                    <p style="text-align:justify;">Formato de Archivo Inválido. Porfavor vuelve a intentarlo.</p>
-                    `,
-                });
+                // Swal.fire({
+                //     html: `
+                //     <p style="text-align:justify;">Formato de Archivo Inválido. Porfavor vuelve a intentarlo.</p>
+                //     `,
+                // });
+                alert("Formato de Archivo Inválido. Porfavor vuelve a intentarlo.")
             }
         </script>
         <form name="form1" action="registrar.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
-            <div class="fs-3 titulo ">INGRESAR MAQUINARIA</div>
+            <div class="fs-3 titulo ">Ingresar Maquinaria</div>
             <div class="form-group input">
                 <label class="label" for="id_region">Región</label>
                 <select class="form-select input" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $id_usuario; ?>')" Required>
