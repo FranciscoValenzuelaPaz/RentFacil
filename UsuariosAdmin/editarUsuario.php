@@ -8,7 +8,6 @@ ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
-
 ?>
 
 <head>
@@ -25,6 +24,7 @@ include("../ConexionDB/conexion.php");
 
 if (isset($_GET['id_usuario']) && isset($_GET['usuario'])) {
   $id_usuario = $_GET['id_usuario'];
+
   $usuario = $_GET['usuario'];
 } else {
   $id_usuario = "";
@@ -48,36 +48,36 @@ while ($row = $stmt->fetch()) {
 
 <body>
   <div class="container">
-    <div class="fs-3 label">EDITAR USUARIO</div>
+    <div class="fs-2 titulo">Editar usuario</div>
     <form name="form" action="editar.php" method="POST">
       <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
       <input type="hidden" name="usuario" value="<?php echo $usuario; ?>">
-      <div class="form-group col-sm-4 label">
+      <div class="form-group col-sm-4">
         <label for="nombre">Nombre</label>
-        <input type="text" class="form-control input2" id="nombre" name="nombre" placeholder="Ingresa Nombre" value="<?php echo $nombre; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa Nombre" value="<?php echo $nombre; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
         event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
         event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
         event.charCode == 243 || event.charCode == 250 || event.charCode == 32" Required>
       </div>
-      <div class="form-group col-sm-4 label">
+      <div class="form-group col-sm-4">
         <label for="apellido">Apellido</label>
-        <input type="text" class="form-control input2" id="apellido" name="apellido" placeholder="Ingresa Apellido" value="<?php echo $apellido; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresa Apellido" value="<?php echo $apellido; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
         event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
         event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
         event.charCode == 243 || event.charCode == 250 || event.charCode == 32" Required>
       </div>
 
-      <div class="form-group col-sm-4 label">
+      <div class="form-group col-sm-4">
         <label for="telefono">Teléfono</label>
-        <input type="text" class="form-control input2" id="telefono" name="telefono" min="0" maxlength="12" placeholder="+56912345678" value="<?php echo $telefono; ?>" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return event.charCode >= 48 &&
+        <input type="text" class="form-control" id="telefono" name="telefono" min="0" maxlength="12" placeholder="+56912345678" value="<?php echo $telefono; ?>" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return event.charCode >= 48 &&
     event.charCode <= 57 || event.charCode == 43" Required>
       </div>
-      <div class="form-group col-sm-4 label">
+      <div class="form-group col-sm-4">
         <label for="email">Email</label>
-        <input type="email" class="form-control input2" id="email" name="email" placeholder="Ingresa Email" value="<?php echo $email; ?>" Required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa Email" value="<?php echo $email; ?>" Required>
       </div>
-      <div>
-        <button type="submit" class="btn btn-success margenBoton">Guardar Cambios</button>
+      <div class="d-flex ctrl" >
+        <button type="submit" class="btn btn-dark">Guardar Cambios</button>
       </div>
     </form>
     <!-- Optional JavaScript; choose one of the two! -->

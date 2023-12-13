@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
-
+include("../encriptarContrasena/encriptarClave.php");
 ?>
 
 <head>
@@ -26,6 +26,10 @@ include("../ConexionDB/conexion.php");
 
     //capturo los datos del formulario
     $id_usuario = $_POST['id_usuario'];
+    $id_usuario_original = $desencriptar($id_usuario);
+
+
+
     $usuario = $_POST['usuario'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -36,7 +40,7 @@ include("../ConexionDB/conexion.php");
     $mensaje = '';
 
     $query = $dbh->prepare("UPDATE tabla_usuario SET nombre = ?, apellido = ?, telefono = ?, email = ?,fecha_actualizacion = ?,usuario_actualizacion = ?  WHERE id_usuario = ?");
-    $resultado = $query->execute([$nombre,$apellido, $telefono, $email, $fecha, $id_usuario,$usuario]); # Pasar en el mismo orden de los ?
+    $resultado = $query->execute([$nombre,$apellido, $telefono, $email, $fecha, $id_usuario_original,$usuario]); # Pasar en el mismo orden de los ?
     if ($resultado === TRUE) {
         $mensaje = "editado";
         echo '

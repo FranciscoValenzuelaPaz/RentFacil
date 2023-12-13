@@ -24,54 +24,61 @@
   <script>
     var mensaje = "<?php echo $mensaje; ?>";
     if (mensaje == "max_direcciones") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
+      //               `,
+      // });
+      alert("Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección")
 
     }
     if (mensaje == "registrado") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Usuario Registrado con éxito.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Usuario Registrado con éxito.</p>
+      //               `,
+      // });
+      alert("Usuario Registrado con éxito.")
     }
     if (mensaje == "error_registrar") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Error al Registrar Usuario. Porfavor vuelve a intentarlo.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Error al Registrar Usuario. Porfavor vuelve a intentarlo.</p>
+      //               `,
+      // });
+      alert("Error al Registrar Usuario. Porfavor vuelve a intentarlo.")
     }
     if (mensaje == "editado") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Usuario editada con éxito.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Usuario editada con éxito.</p>
+      //               `,
+      // });
+      alert("Usuario editada con éxito.")
     }
     if (mensaje == "error_editar") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Error al Editar Usuario. Porfavor vuelve a intentarlo.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Error al Editar Usuario. Porfavor vuelve a intentarlo.</p>
+      //               `,
+      // });
+      alert("Error al Editar Usuario. Porfavor vuelve a intentarlo.")
     }
     if (mensaje == "eliminado") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Usuario eliminado con éxito.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Usuario eliminado con éxito.</p>
+      //               `,
+      // });
+      alert("Usuario eliminado con éxito.")
     }
     if (mensaje == "error_eliminar") {
-      Swal.fire({
-        html: `
-                    <p style="text-align:justify;">Error al Eliminar Usuario. Porfavor vuelve a intentarlo.</p>
-                    `,
-      });
+      // Swal.fire({
+      //   html: `
+      //               <p style="text-align:justify;">Error al Eliminar Usuario. Porfavor vuelve a intentarlo.</p>
+      //               `,
+      // });
+      alert("Error al Eliminar Usuario. Porfavor vuelve a intentarlo.")
     }
   </script>
   <?php
@@ -92,9 +99,9 @@
   ?>
   <div class="margen">
     <?php if (!empty($arrayUsuario)) { ?>
-      <div class="fs-3 margen">LISTA DE USUARIOS</div>
+      <div class="fs-3 margen">Lista de usuarios</div>
       <div>
-        <button class="btn btn-success" onclick="location='crudUsuarios.php?id_usuario=<?php echo $id_usuario; ?>'">Actualizar Registros</button>
+        <button class="btn btn-info" onclick="location='crudUsuarios.php?id_usuario=<?php echo $id_usuario; ?>'">Actualizar Registros</button>
       </div>
       <div class="tamanoCrud margen2">
         <div class="table-responsive ">
