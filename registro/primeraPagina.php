@@ -1,14 +1,11 @@
 <style>
-  <?php include("../CSS/primeraPagina.css"); ?>
+  <?php include("../CSS/primeraPagina.css"); ?><?php include("../Header-Footer/header3.php"); ?>
 </style>
 
 
-<?php
-include("../Header-Footer/header3.php");
-?>
 <html>
 
-<body class="body">
+<body>
 </body>
 
 </html>
