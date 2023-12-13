@@ -21,54 +21,61 @@ if (isset($_GET['mensaje'])) {
 <script>
   var mensaje = "<?php echo $mensaje; ?>";
   if (mensaje == "max_direcciones") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
+    //                 `,
+    // });
+    alert("Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección")
 
   }
   if (mensaje == "registrado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Cotización Registrada con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Cotización Registrada con éxito.</p>
+    //                 `,
+    // });
+    alert("Cotización Registrada con éxito.")
   }
   if (mensaje == "error_registrar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Registrar Cotización. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Registrar Cotización. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Registrar Cotización. Porfavor vuelve a intentarlo.")
   }
   if (mensaje == "editado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Cotización editada con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Cotización editada con éxito.</p>
+    //                 `,
+    // });
+    alert("Cotización editada con éxito.")
   }
   if (mensaje == "error_editar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Editar Cotización. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Editar Cotización. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Editar Cotización. Porfavor vuelve a intentarlo.")
   }
   if (mensaje == "eliminado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Cotización eliminada con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Cotización eliminada con éxito.</p>
+    //                 `,
+    // });
+    alert("Cotización eliminada con éxito.")
   }
   if (mensaje == "error_eliminar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Eliminar Cotización. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Eliminar Cotización. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Eliminar Cotización. Porfavor vuelve a intentarlo.")
   }
 </script>
 <html>
