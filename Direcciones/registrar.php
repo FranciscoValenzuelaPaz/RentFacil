@@ -5,6 +5,7 @@ ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
+include("../encriptarContrasena/encriptarClave.php");
 
 ?>
 
@@ -25,6 +26,8 @@ include("../ConexionDB/conexion.php");
 if (isset($_POST['btnIngresarDireccion'])) {
     //capturo los datos del formulario
     $id_usuario = $_POST['id_usuario'];
+    $id_usuario_original = $desencriptar($id_usuario);
+
     $id_region = $_POST['id_region'];
     $id_ciudad = $_POST['id_ciudad'];
     $id_comuna = $_POST['id_comuna'];
@@ -37,7 +40,7 @@ if (isset($_POST['btnIngresarDireccion'])) {
     //crearemos una consulta para traer la cantidad de direcciones que posee el usuario
     //NO DEBE TENER MÁS DE 5 DIRECCIONES
     $arrayCantidadDirecciones = array();
-    $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE id_usuario='$id_usuario'");
+    $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE id_usuario='$id_usuario_original'");
     // Especificamos el fetch mode antes de llamar a fetch()
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     // Ejecutamos
@@ -65,7 +68,7 @@ if (isset($_POST['btnIngresarDireccion'])) {
 
     //generamos consulta para actualizar los datos en la base de datos
     $sql = "INSERT INTO tabla_direcciones (id_usuario, id_region ,id_ciudad , id_comuna, direccion, tipo_direccion) VALUES
-    ( '$id_usuario ', '$id_region', '$id_ciudad', '$id_comuna', '$direccion', '$tipo_direccion')";
+    ( '$id_usuario_original ', '$id_region', '$id_ciudad', '$id_comuna', '$direccion', '$tipo_direccion')";
 
     if ($mensaje != "max_direcciones") {
         if ($dbh->exec($sql)) {
