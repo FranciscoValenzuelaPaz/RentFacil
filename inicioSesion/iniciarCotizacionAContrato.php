@@ -9,6 +9,7 @@ $mensaje = '';
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    $id_cotizacion = $_POST["id_cotizacion"];
     $email = trim($_POST["email"]);
     $contrasena = trim($_POST["contrasena"]);
     $id_usuario_encriptado = '';
@@ -26,17 +27,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while ($row = $stmt->fetch()) {
             $estado = $row['estado'];
             $id_usuario = $row['id_usuario'];
-            $tipo = $row['tipo'];
         }
         if ($estado == 2) {
-            if($tipo == 2){
-                $id_usuario_encriptado = $encriptar($id_usuario);
-                echo '<script>window.location="../inicioHome/inicioAdmin.php?id_usuario=' . $id_usuario_encriptado . '"</script>';
+
+            $stmt = $dbh->prepare("SELECT * FROM tabla_cotizaciones WHERE id_cotizacion='$id_cotizacion'");
+            // Especificamos el fetch mode antes de llamar a fetch()
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            // Ejecutamos
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                // Mostramos los resultados
+                while ($row = $stmt->fetch()) {
+                $id_maquinaria = $row['id_servicio'];
+                }
             }else{
-                $id_usuario_encriptado = $encriptar($id_usuario);
-                echo '<script>window.location="../inicioHome/inicio.php?id_usuario=' . $id_usuario_encriptado . '"</script>';
+                $id_maquinaria= '';
             }
-           
+            $id_usuario_encriptado = $encriptar($id_usuario);
+            echo '<script>window.location="../contratos/formularioContrato.php?id_usuario=' . $id_usuario_encriptado . '&tipo_servicio=1&id_maquinaria='.$id_maquinaria.'"</script>'; 
         } else {
             if ($estado == 1) {
                 $mensaje = "sin_verificar";
@@ -45,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             echo '
                 <script>
-                        window.location="../inicioSesion/iniciarSesion.php?mensaje=' . $mensaje . '";
+                        window.location="../inicioSesion/iniciarSesionCotizacionAContrato.php?mensaje=' . $mensaje . '&id_cotizacion='.$id_cotizacion.'";
                 </script>';
         }
     } else {
@@ -75,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 echo '
                     <script>
-                            window.location="../inicioSesion/iniciarSesion.php?mensaje=' . $mensaje . '";
+                            window.location="../inicioSesion/iniciarSesionCotizacionAContrato.php?mensaje=' . $mensaje . '&id_cotizacion='.$id_cotizacion.'";
                     </script>';
             } else {
                 $intentos = $intentos + 1;
@@ -87,14 +95,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mensaje = "no_coincide";
                 echo '
                     <script>
-                            window.location="../inicioSesion/iniciarSesion.php?mensaje=' . $mensaje . '";
+                            window.location="../inicioSesion/iniciarSesionCotizacionAContrato.php?mensaje=' . $mensaje . '&id_cotizacion='.$id_cotizacion.'";
                     </script>';
             }
         } else {
             $mensaje = "no_registrado";
             echo '
                 <script>
-                        window.location="../inicioSesion/iniciarSesion.php?mensaje=' . $mensaje . '";
+                        window.location="../inicioSesion/iniciarSesionCotizacionAContrato.php?mensaje=' . $mensaje . '&id_cotizacion='.$id_cotizacion.'";
                 </script>';
         }
     }
@@ -102,15 +110,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    /*
-         if ($resultado->rowCount() == 1 && $resultado['estado'] == 2) {
-           
-
-        } else {
-            
-        }
-        
-    }
-*/
 }
 ?>
