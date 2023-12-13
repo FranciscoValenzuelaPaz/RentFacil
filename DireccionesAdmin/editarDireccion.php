@@ -33,6 +33,22 @@ include("../ConexionDB/conexion.php");
             $id_usuario = "";
             $id_direccion = "";
         }
+        if (isset($_GET['mensaje'])) {
+            $mensaje = $_GET['mensaje'];
+        } else {
+            $mensaje = '';
+        }
+        
+        if (isset($_GET['region'])) {
+            $region = $_GET['region'];
+        } else {
+            $region = "";
+        }
+        if (isset($_GET['ciudad'])) {
+            $ciudad = $_GET['ciudad'];
+        } else {
+            $ciudad = "";
+        }
         $stmt = $dbh->prepare("SELECT * FROM tabla_direcciones WHERE id_direccion='$id_direccion'");
         // Especificamos el fetch mode antes de llamar a fetch()
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -49,7 +65,17 @@ include("../ConexionDB/conexion.php");
         }
 
         ?>
-
+        <script>
+            var mensaje = "<?php echo $mensaje; ?>";
+            if (mensaje == "formato_invalido") {
+                // Swal.fire({
+                //     html: `
+                //     <p style="text-align:justify;">Formato de Archivo Inválido. Porfavor vuelve a intentarlo.</p>
+                //     `,
+                // });
+                alert("Formato de Archivo Inválido. Porfavor vuelve a intentarlo.")
+            }
+        </script>
 
         <div class="fs-3 titulo">EDITAR DIRECCIONES</div>
         <form name="form1" action="editar.php" method="POST">
@@ -57,8 +83,134 @@ include("../ConexionDB/conexion.php");
             <input type="hidden" name="id_direccion" value="<?php echo $id_direccion; ?>">
             <input type="hidden" name="id_usuario_direccion" value="<?php echo $id_usuario_direccion; ?>">
             <div class="form-group label">
+                <label for="id_region">Región</label>
+                <select class="form-select input" aria-label="Default select example" name='id_region' id="id_region"  onchange="marcarCiudad(this.value,'<?php echo $id_usuario; ?>','<?php echo $id_direccion; ?>')" Required>
+                    <option value="" selected>Selecciona una Región</option>
+                    <?php
+                    $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_region'] . '"';
+                        if ($row['id_region'] == $region) {
+                            echo 'selected';
+                        }else {
+                            if ($row['id_region'] == $id_region) {
+                                echo 'selected';
+                            }
+                        }
+                        echo '>' . $row['nombre_region'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <script>
+                    function marcarCiudad(region, id_usuario, id_direccion) {
+                        // alert("Hola");
+                        var region = region;
+                        var id_usuario = id_usuario;
+                        var id_direccion = id_direccion;
+                        if (region != "" && id_usuario != "" && id_direccion != "") {
+                            window.location.href = "editarDireccion.php?id_usuario=" + id_usuario + "&region=" + region + "&id_direccion=" + id_direccion;
+                        } else
+                            alert('No ha seleccionado ninguna Región');
+                        //document.location.href="modificarEstado.php?id="+id;
+                    }
+                </script>
+            <div class="form-group label">
+                <label for="id_ciudad">Ciudad</label>
+                
+                <select class="form-select input " aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $id_usuario; ?>','<?php echo $region; ?>','<?php echo $id_direccion; ?>')" Required>
+                    <option value="" selected>Selecciona una Ciudad</option>
+                    <?php
+                    if (!empty($region)) {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades WHERE id_region='$region'");
+                    } else {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades");
+                    }
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_ciudad'] . '"';
+                        if (!empty($ciudad)) {
+                            if ($row['id_ciudad'] == $ciudad) {
+                                echo 'selected';
+                            }
+                        } else {
+                            if (!empty($region)) {
+                            } else {
+                                if ($row['id_ciudad'] == $id_ciudad) {
+                                    echo 'selected';
+                                }
+                            }
+                        }
+                        echo '>' . $row['nombre_ciudad'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <script>
+                    function marcarComuna(ciudad, id_usuario, region, id_direccion) {
+                        // alert("Hola");
+                        var region = region;
+                        var id_usuario = id_usuario;
+                        var ciudad = ciudad;
+                        var id_direccion = id_direccion;
+                        if (region != "" && id_usuario != "" && ciudad != "" && id_direccion != "" ) {
+                            window.location.href = "editarDireccion.php?id_usuario=" + id_usuario + "&region=" + region + "&ciudad=" + ciudad + "&id_direccion=" + id_direccion;
+                        } else
+                            alert('No ha seleccionado ninguna Ciudad');
+                        //document.location.href="modificarEstado.php?id="+id;
+                    }
+                </script>
+            <div class="form-group label">
+                <label for="id_comuna">Comuna</label>
+                
+                <select class="form-select input " aria-label="Default select example" name='id_comuna' id="id_comuna" Required>
+                    <option value="" selected>Selecciona una Comuna</option>
+                    <?php
+                    if (!empty($region)) {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_comunas WHERE id_ciudad='$ciudad'");
+                    } else {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_comunas");
+                    }
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_comuna'] . '"';
+                        if (!empty($region)) {
+                        } else {
+                            if ($row['id_comuna'] == $id_comuna) {
+                                echo "selected";
+                            }
+                        }
+                        echo '>' . $row['nombre_comuna'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            
+            <div class="form-group label">
+                <label for="direccion">Dirección</label>
+                
+                <input type="text" class="form-control input" id="direccion" name="direccion" placeholder="Ingresa Dirección" value="<?php echo $direccion; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
+              event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
+              event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
+              event.charCode == 243 || event.charCode == 250 || event.charCode == 32 || event.charCode >= 48 &&
+              event.charCode <= 57" Required>
+            </div>
+            <div class="form-group label">
                 <label for="correo">Usuario</label>
-
+    
                 <select class="form-select input" aria-label="Default select example" name='correo' id="correo" Required>
                     <option value="" selected>Selecciona un Usuario</option>
                     <?php
@@ -81,81 +233,6 @@ include("../ConexionDB/conexion.php");
                 </select>
             </div>
             <div class="form-group label">
-                <label for="id_region">Región</label>
-                <select class="form-select input" aria-label="Default select example" name='id_region' id="id_region" Required>
-                    <option value="" selected>Selecciona una Región</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_region'] . '"';
-                        if ($row['id_region'] == $id_region) {
-                            echo 'selected';
-                        }
-                        echo '>' . $row['nombre_region'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group label">
-                <label for="id_ciudad">Ciudad</label>
-
-                <select class="form-select input " aria-label="Default select example" name='id_ciudad' id="id_ciudad" Required>
-                    <option value="" selected>Selecciona una Ciudad</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_ciudad'] . '"';
-                        if ($row['id_ciudad'] == $id_ciudad) {
-                            echo "selected";
-                        }
-                        echo '>' . $row['nombre_ciudad'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group label">
-                <label for="id_comuna">Comuna</label>
-
-                <select class="form-select input " aria-label="Default select example" name='id_comuna' id="id_comuna" Required>
-                    <option value="" selected>Selecciona una Comuna</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_comunas");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_comuna'] . '"';
-                        if ($row['id_comuna'] == $id_comuna) {
-                            echo "selected";
-                        }
-                        echo '>' . $row['nombre_comuna'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group label">
-                <label for="direccion">Dirección</label>
-
-                <input type="text" class="form-control input" id="direccion" name="direccion" placeholder="Ingresa Dirección" value="<?php echo $direccion; ?>" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
-              event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
-              event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
-              event.charCode == 243 || event.charCode == 250 || event.charCode == 32 || event.charCode >= 48 &&
-              event.charCode <= 57" Required>
-            </div>
-            <div class="form-group label">
                 <label for="tipo_direccion">Tipo</label>
                 <select class="form-select input" aria-label="Default select example" name="tipo_direccion" id="tipo_direccion" Required>
                     <option value="" selected>Selecciona un Tipo</option>
@@ -176,8 +253,8 @@ include("../ConexionDB/conexion.php");
                 <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='crudDirecciones.php?id_usuario=<?php echo $id_usuario; ?>'">
             </div>
         </form>
-
-
+        
+        
 
 
 

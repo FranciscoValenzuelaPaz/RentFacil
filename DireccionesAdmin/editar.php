@@ -5,6 +5,7 @@ ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
+include("../encriptarContrasena/encriptarClave.php");
 
 ?>
 
@@ -27,6 +28,8 @@ if (isset($_POST['btnEditarDireccion'])) {
 
     //capturo los datos del formulario
     $id_usuario = $_POST['id_usuario'];
+    $id_usuario_original = $desencriptar($id_usuario);
+
     $id_usuario_direccion = $_POST['id_usuario_direccion'];
     $id_direccion = $_POST['id_direccion'];
     $id_region = $_POST['id_region'];
@@ -39,7 +42,7 @@ if (isset($_POST['btnEditarDireccion'])) {
     $mensaje = '';
 
     $query = $dbh->prepare("UPDATE tabla_direcciones SET id_usuario = ?, id_region = ?, id_ciudad = ?, id_comuna = ?, direccion = ?, tipo_direccion = ?,fecha_actualizacion = ?,usuario_actualizacion = ?  WHERE id_direccion = ?;");
-    $resultado = $query->execute([$id_usuario_direccion, $id_region, $id_ciudad, $id_comuna, $direccion, $tipo_direccion, $fecha, $id_usuario, $id_direccion]); # Pasar en el mismo orden de los ?
+    $resultado = $query->execute([$id_usuario_direccion, $id_region, $id_ciudad, $id_comuna, $direccion, $tipo_direccion, $fecha, $id_usuario_original, $id_direccion]); # Pasar en el mismo orden de los ?
     if ($resultado === TRUE) {
         $mensaje = "editado";
         echo '

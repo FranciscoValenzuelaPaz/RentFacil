@@ -31,11 +31,130 @@ include("../ConexionDB/conexion.php");
         } else {
             $id_usuario = "";
         }
-
+        if (isset($_GET['mensaje'])) {
+            $mensaje = $_GET['mensaje'];
+        } else {
+            $mensaje = '';
+        }
+        if (isset($_GET['region'])) {
+            $region = $_GET['region'];
+        } else {
+            $region = "";
+        }
+        if (isset($_GET['ciudad'])) {
+            $ciudad = $_GET['ciudad'];
+        } else {
+            $ciudad = "";
+        }
         ?>
         <div class="fs-3 titulo">INGRESAR DIRECCIÓN</div>
         <form name="form1" action="registrar.php" method="POST">
             <input class="input" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+            <div class="form-group label">
+                <label for="id_region ">Región</label>
+                
+                <select class="form-select input" aria-label="Default select example" name='id_region' id="id_region" onchange="marcarCiudad(this.value,'<?php echo $id_usuario; ?>')" Required>
+                    <option value="" selected>Selecciona una Región</option>
+                    <?php
+                    $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_region'] . '"';
+                        if ($region == $row['id_region']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $row['nombre_region'] . '</option>';                    }
+                    ?>
+                </select>
+            </div>
+            <script>
+                function marcarCiudad(region, id_usuario) {
+                    // alert("Hola");
+                    var region = region;
+                    var id_usuario = id_usuario;
+                    if (region != "" && id_usuario != "") {
+                        window.location.href = "registrarDireccion.php?id_usuario=" + id_usuario + "&region=" + region;
+                    } else
+                        alert('No ha seleccionado ninguna Región');
+                    //document.location.href="modificarEstado.php?id="+id;
+                }
+            </script> 
+            <div class="form-group label">
+                <label for="id_ciudad">Ciudad</label>
+                
+                <select class="form-select input" aria-label="Default select example" name='id_ciudad' id="id_ciudad" onchange="marcarComuna(this.value,'<?php echo $id_usuario; ?>','<?php echo $region; ?>')" Required>
+                    <option value="" selected>Selecciona una Ciudad</option>
+                    <?php
+                    if (!empty($region)) {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades WHERE id_region='$region'");
+                    } else {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades");
+                    }
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_ciudad'] . '"';
+                        if ($ciudad == $row['id_ciudad']) {
+                            echo 'selected';
+                        }
+                        echo '>' . $row['nombre_ciudad'] . '</option>';                   
+                    }
+                    ?>
+                </select>
+            </div>
+            <script>
+                function marcarComuna(ciudad, id_usuario, region) {
+                    // alert("Hola");
+                    var region = region;
+                    var id_usuario = id_usuario;
+                    var ciudad = ciudad;
+                    if (region != "" && id_usuario != "" && ciudad != "") {
+                        window.location.href = "registrarDireccion.php?id_usuario=" + id_usuario + "&region=" + region + "&ciudad=" + ciudad;
+                    } else
+                        alert('No ha seleccionado ninguna Ciudad');
+                    //document.location.href="modificarEstado.php?id="+id;
+                }
+            </script>
+            <div class="form-group label">
+                <label for="id_comuna">Comuna</label>
+                
+                <select class="form-select input" aria-label="Default select example" name='id_comuna' id="id_comuna" Required>
+                    <option value="" selected>Selecciona una Comuna</option>
+                    <?php
+                    if (!empty($region)) {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_comunas WHERE id_ciudad='$ciudad'");
+                    } else {
+                        $stmt = $dbh->prepare("SELECT * FROM tabla_comunas");
+                    }
+                    // Especificamos el fetch mode antes de llamar a fetch()
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    // Ejecutamos
+                    $stmt->execute();
+                    // Mostramos los resultados
+                    while ($row = $stmt->fetch()) {
+                        echo '<option value="' . $row['id_comuna'] . '">' . $row['nombre_comuna'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group label">
+                <label for="direccion">Dirección</label>
+                
+                <input type="text" class="form-control input" id="direccion" name="direccion" placeholder="Ingresa Dirección" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
+              event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
+              event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
+              event.charCode == 243 || event.charCode == 250 || event.charCode == 32 || event.charCode >= 48 &&
+              event.charCode <= 57" Required>
+            </div>
+            
             <div class="form-group label">
                 <label for="usuario">Usuario</label>
 
@@ -55,73 +174,7 @@ include("../ConexionDB/conexion.php");
                     ?>
                 </select>
             </div>
-            <div class="form-group label">
-                <label for="id_region ">Región</label>
-
-                <select class="form-select input" aria-label="Default select example" name='id_region' id="id_region" Required>
-                    <option value="" selected>Selecciona una Región</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_regiones");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_region'] . '">' . $row['nombre_region'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group label">
-                <label for="id_ciudad">Ciudad</label>
-
-                <select class="form-select input" aria-label="Default select example" name='id_ciudad' id="id_ciudad" Required>
-                    <option value="" selected>Selecciona una Ciudad</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_ciudades");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_ciudad'] . '">' . $row['nombre_ciudad'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group label">
-                <label for="id_comuna">Comuna</label>
-
-                <select class="form-select input" aria-label="Default select example" name='id_comuna' id="id_comuna" Required>
-                    <option value="" selected>Selecciona una Comuna</option>
-                    <?php
-                    $stmt = $dbh->prepare("SELECT * FROM tabla_comunas");
-                    // Especificamos el fetch mode antes de llamar a fetch()
-                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    // Ejecutamos
-                    $stmt->execute();
-                    // Mostramos los resultados
-                    while ($row = $stmt->fetch()) {
-                        echo '<option value="' . $row['id_comuna'] . '">' . $row['nombre_comuna'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <div class="form-group label">
-                <label for="direccion">Dirección</label>
-
-                <input type="text" class="form-control input" id="direccion" name="direccion" placeholder="Ingresa Dirección" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 ||
-              event.charCode == 209 || event.charCode == 241 || event.charCode == 193 || event.charCode == 201 || event.charCode == 205 ||
-              event.charCode == 211 || event.charCode == 218 || event.charCode == 225 || event.charCode == 233 || event.charCode == 237 || 
-              event.charCode == 243 || event.charCode == 250 || event.charCode == 32 || event.charCode >= 48 &&
-              event.charCode <= 57" Required>
-            </div>
-
+            
             <div class="form-group label">
                 <label for="tipo_direccion">Tipo</label>
                 <select class="form-select input" aria-label="Default select example" name="tipo_direccion" id="tipo_direccion" Required>
