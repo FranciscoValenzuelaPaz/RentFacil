@@ -1,0 +1,48 @@
+body {
+  background-image: url("../images/img_fondoweb.png");
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-size: 100% 100% !important;
+  text-align: center  ;
+}
+.container_faq {
+  text-align: center;
+  width: 69% !important;
+  color: white !important;
+  margin: auto;
+  margin-top: 4%;
+}
+.form-control {
+  text-align: center;
+}
+.faq-section {
+  background-color: rgba(255, 255, 255, 0.1);
+
+  border-radius: 10px;
+}
+
+.faq-item {
+  padding: 2%;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.faq-question {
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.respuestas{
+  text-align: justify;
+}

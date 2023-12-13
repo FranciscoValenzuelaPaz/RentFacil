@@ -1,42 +1,49 @@
-.label {
-    color: white !important;
-    text-align: center;
-}
-
-.fondoformulario {
-    margin-top: 15px;
-    background-image: url("../images/fondo_formulario.png");
-    text-align: center;
-    color: white !important;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+body {
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: 100% 100% !important;
 }
-.input2 {
+
+.titulo {
+    margin-top: 5% !important;
     text-align: center;
-    margin: 0 auto;
-    width: 500px;
-    color: black !important;
-  }
-.tabla {
-    width: 700px !important;
+    color: white !important;
 }
 
-.tablatxt {
-    text-align: center !important;
-}
-
-.input {
-    margin-top: 15px !important;
+.form-group {
+    margin-top: 2% !important;
     text-align: center;
+    margin: auto;
+    color: white !important;
+    margin: auto;
+}
+.form-select {
+    text-align: center;
+    width: 30% !important;
     color: black !important;
-    margin-left: auto;
-
+    margin: auto;
 }
 
-.margenBoton {
-    margin-left: 240px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+.form-control {
+    text-align: center;
+    width: 30% !important;
+    color: black !important;
+    margin: auto;
+}
+
+.form-check {
+    margin: auto;
+    color: white !important;
+    margin-top: 2% !important;
+    margin-bottom: 1% !important;
+}
+.ctrl {
+    margin-top: 3%;
+    margin-left: 32%;
+    
+}
+.txt {
+    color: white !important;
 }

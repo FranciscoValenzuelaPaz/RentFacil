@@ -1,7 +1,10 @@
-.botones {
-    margin-left: 950px;
+.container {
+    padding: 2%
 }
 
+.botones {
+    margin-left: 5%;
+}
 .fondo {
     background-image: url("../images/fondo_formulario.png");
     background-repeat: no-repeat !important;

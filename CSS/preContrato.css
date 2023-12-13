@@ -1,0 +1,22 @@
+.fondojumbotron{
+    background-color: lightgoldenrodyellow !important;
+    margin-top: 5% !important;
+    margin-left: 25% !important;
+    width: 50% !important;
+}
+.contenidoJumbotron{
+    margin-left: 5% !important;
+    margin-bottom: 10% !important;
+    margin-right: 5% !important;
+    height: 46% !important;
+}
+body {
+    background-image: url("../images/img_fondoweb.png") !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+.ctrl {
+    padding: 1%;
+    margin-left: 37%;
+}

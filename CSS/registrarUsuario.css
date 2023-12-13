@@ -1,52 +1,24 @@
-.formulario {
-  width: 50% !important;
-  margin-left: 25% !important;
-}
-
-.margen {
-  margin-top: 15px !important;
-  text-align: center;
-  margin: 0 auto;
-  width: 500px;
+body {
+  background-image: url("../images/img_fondoweb.png");
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-size: 100% 100% !important;
   color: white !important;
 }
 
-.input {
-  margin-top: 15px !important;
-  text-align: center;
-  margin: 0 auto;
-  width: 500px;
-  color: black !important;
-}
-.input2 {
-  text-align: center;
-  margin: 0 auto;
-  width: 500px;
-  color: black !important;
+.form-container {
+  text-align: center !important;
 }
 
-.body {
-  background-image: url("../images/fondo_formulario.png");
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  background-size: 100% 100% !important;
+.form-control{
+  text-align: center !important;
+}
+.mg{
+  text-align: center !important;
+  margin-left: 23% !important;
 }
 
-.fondoformulario {
-  margin-top: 15px;
-  background-image: url("../images/fondo_formulario.png");
-  text-align: center;
-  border-radius: 22px;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  background-size: 100% 100% !important;
-}
-
-.fin {
-  padding-bottom: 30px;
-}
-
-.inicio {
-  padding-top: 30px;
+.txt{
+  margin-top: 6% !important;
 }

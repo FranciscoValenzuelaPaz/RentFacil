@@ -4,21 +4,14 @@ body {
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
   background-size: 100% 100% !important;
-  color: white !important;
 }
-
-.form-control {
-    text-align: center;
-    width: 30% !important;
-    color: black !important;
-    margin: auto;
-
-}
-
-.fondo{
-  margin-top: 5% !important;
+.form-container {
   text-align: center;
-  margin: auto;
+  width: 40% !important;
   color: white !important;
   margin: auto;
+  margin-top: 4%;
+}
+.form-control{
+    text-align: center;
 }

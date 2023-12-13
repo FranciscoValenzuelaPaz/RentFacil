@@ -1,7 +1,6 @@
 body {
-    background-image: url("../images/fondo_formulario.png");
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-bottom: 15px !important;
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: 100% 100% !important;
@@ -11,4 +10,8 @@ body {
     color: white;
     margin-top: 2%;
     margin-bottom: 1%;
+}
+
+footer{
+    margin-top: 3%;
 }

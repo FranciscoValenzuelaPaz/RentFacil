@@ -1,50 +1,49 @@
-.input {
-    margin-top: 15px !important;
-    text-align: center;
-    color: black !important;
-    margin-left: auto;
-
-}
-.input2 {
-    text-align: center;
-    margin: 0 auto;
-    width: 500px;
-    color: black !important;
-  }
-.margen {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
+body {
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
 }
 
-.label {
-    color: white !important;
-    text-align: center;
-}
-
-.fondoformulario {
-    margin-top: 15px;
+.titulo {
+    margin-top: 5% !important;
     text-align: center;
     color: white !important;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url("../images/fondo_formulario.png");
 }
 
-.tabla {
-    width: 700px !important;
+.form-group {
+    margin-top: 2% !important;
+    text-align: center;
+    margin: auto;
+    color: white !important;
+    margin: auto;
+}
+.form-select {
+    text-align: center;
+    width: 30% !important;
+    color: black !important;
+    margin: auto;
 }
 
-.tablatxt {
-    text-align: center !important;
+.form-control {
+    text-align: center;
+    width: 30% !important;
+    color: black !important;
+    margin: auto;
 }
 
-.body {
-    background-image: url("../images/fondo_formulario.png");
+.form-check {
+    margin: auto;
+    color: white !important;
+    margin-top: 2% !important;
+    margin-bottom: 1% !important;
 }
-
-.margenBoton {
-    margin-left: 260px;
+.ctrl {
+    margin-top: 3%;
+    margin-left: 38%;
+    
 }
-
-.fin {
-    margin-bottom: 15px;
+.txt {
+    color: white !important;
 }

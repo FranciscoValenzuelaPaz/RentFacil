@@ -1,56 +1,33 @@
-.descripcion {
-    height: 120px !important;
-    width: 280px !important;
-}
-
-.fondoformulario {
-    padding: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px !important;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url(../../../images/fondo_todo.png);
-    margin-bottom: 15px !important;
-    border-radius: 5px !important;
-    border: 5px !important;
-    background-attachment: fixed !important;
-    background-size: 100% 100% !important;
-}
-.input2 {
-    text-align: center;
-    margin: 0 auto;
-    width: 500px;
-    color: black !important;
-  }
-.tabla {
-    width: 700px !important;
-}
-
-.tablatxt {
-    text-align: center !important;
-}
-
-.body {
-    background-image: url("../../../images/fondo_formulario.png");
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-bottom: 15px !important;
+body {
+    background-image: url("../../../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: 100% 100% !important;
-}
-
-.control1 {
     text-align: center;
 }
 
-.celda {
-    width: 140px !important;
+.table {
+    color: white !important;
 }
 
-.margen {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.bm {
+    border-radius: 15px;
+    border-style: solid;
+    border-color: whitesmoke;
+    background-color: rgba(128, 128, 128, 0.4) !important;
 }
 
-.fin {
-    margin-bottom: 20px;
+.fila:hover {
+    background-color: #f5f5f5;
+}
+
+
+.container_estacionamiento {
+    text-align: center;
+    width: 69% !important;
+    color: white !important;
+    margin: auto;
+    margin-top: 4%;
 }

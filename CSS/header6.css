@@ -1,11 +1,18 @@
-.botones {
-    margin-left: 950px;
+.container {
+    padding: 2%
 }
 
-.fondo {
-    background-image: url("../../images/fondo_formulario.png");
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
-    background-size: 100% 100% !important;
-    border-radius: 5px;
+.botones {
+    margin-left: 5%;
 }
+
+ .color_txt_boton {
+     color: white !important;
+ }
+
+ .fondo {
+     background-image: url("../../images/img_fondoweb.png") !important;
+     background-repeat: no-repeat !important;
+     background-attachment: fixed !important;
+     background-size: 100% 100% !important;
+ }

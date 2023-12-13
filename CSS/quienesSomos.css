@@ -1,0 +1,130 @@
+body {
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+}
+
+.titulo {
+    font-size: 40px !important;
+    text-align: center !important;
+    color: white !important;
+    font-family: 'Georgia', serif;
+    /* Cambiar 'Georgia' por la fuente serif que desees usar */
+    margin-top: 7% !important;
+}
+
+.titulo2 {
+    font-size: 40px !important;
+    text-align: center !important;
+    color: white !important;
+    font-family: 'Georgia', serif;
+    /* Cambiar 'Georgia' por la fuente serif que desees usar */
+
+}
+
+.seccion {
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
+
+}
+
+.texto_acerca {
+    color: white;
+    font-size: 20px;
+    text-align: justify;
+
+}
+
+.img_acerca {
+    margin: auto;
+    background-size: 100%;
+    width: 209%;
+    border-radius: 5%;
+    border-style: none;
+}
+
+.fondo_valores {
+    background-image: url("../images/imagen_valores.png");
+    background-size: 100%;
+    border-color: white;
+    border-radius: 5%;
+    border-style: none;
+    opacity: 0.8;
+    margin-bottom: 10%;
+}
+
+.texto_valores {
+    padding: 13%;
+    text-align: justify;
+    font-size: 20px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.img_valores {
+    display: flex;
+    width: 300px !important;
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+    padding: 25%;
+    margin-top: 30%;
+}
+
+.mision-vision {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mision,
+.vision {
+    flex-basis: 48%;
+    text-align: justify;
+}
+
+.equipo-miembros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
+}
+
+.miembro {
+    text-align: center;
+}
+
+.miembro img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 3% !important;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
+    text-align: center !important;
+    color: white !important;
+    padding: 1%;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: white;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}

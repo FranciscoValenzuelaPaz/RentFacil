@@ -1,37 +1,42 @@
-.label {
-    color: white !important;
-    text-align: center !important;
-}
-
-.margen {
-    margin-top: 5% !important;
-    margin-bottom: 1% !important;
-
-}
-
-.margen2 {
-    margin-top: 4% !important;
-    margin-bottom: 4px !important;
-
-}
-
-.fondoformulario {
-    margin-top: 15px;
-    background-image: url("../images/fondo_formulario.png");
-    text-align: center;
-    color: white !important;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+body {
+    margin-top: 3% !important;
+    margin-bottom: 3% !important;
+    background-image: url("../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: 100% 100% !important;
-
 }
 
-.tamanoCrud {
-    width: 108% !important;
-    margin-left: -7% !important;
+.ctrl {
+    margin-left: 45%;
+}
+.ctrl2 {
+    margin-left: 42%;
 }
 
+.titulo {
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+    color: white;
+}
+.tabla {
+    width: 90% !important;
+}
 .fila:hover {
-    background-color: #eee !important;
+    background-color: transparent !important;
+}
+
+/* funcion para cambiar color de los campos de datos */
+td{
+    color: white !important; 
+}
+tr{
+    color: white !important; 
+}
+.table-hover{
+    color: white !important; 
 }

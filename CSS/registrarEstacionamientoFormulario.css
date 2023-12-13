@@ -1,53 +1,28 @@
-.body {
-    margin-bottom: 15px !important;
-    background-image: url("../../../images/fondo_formulario.png");
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 5px !important;
+body {
+    background-image: url("../../../images/img_fondoweb.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: 100% 100% !important;
-}
-
-.fondo {
-    background-image: url("../../../images/fondo_todo.png");
-    margin-bottom: 15px !important;
-    border-radius: 5px !important;
-    border: 5px !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
-    background-size: 100% 100% !important;
-}
-.input2 {
-    text-align: center;
-    margin: 0 auto;
-    width: 500px;
-    color: black !important;
-  }
-.input {
-    margin-top: 15px !important;
-    text-align: center;
-    margin: 0 auto;
-    width: 500px;
-    color: black !important;
-}
-
-.margen {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-}
-
-.label {
+    text-align: center !important;
     color: white !important;
-    text-align: center;
 }
 
-.txtdescripcion {
-    text-align: justify;
-}
+  .bm {
+    border-radius: 15px;
+    border-style: solid;
+    border-color: whitesmoke;
+    background-color: rgba(128, 128, 128, 0.4) !important;
+  }
+  
+  .container_r_estacionamiento {
+    text-align: center !important;
+    width: 69% !important;
 
-.margenBoton {
-    margin-left: 550px;
-    margin-bottom: 30px;
-    margin-top: 15px;
-}
+    margin: auto;
+    margin-top: 4%;
+  }
+  .mt{
+    margin-top: 4%;
+    margin-bottom: 10%;
+  }
