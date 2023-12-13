@@ -1,5 +1,5 @@
 <style>
-  <?php include("../CSS/footer.css"); ?>
+  <?php include("../../CSS/footer.css"); ?>
 </style>
 
 
@@ -13,9 +13,9 @@
       </div>
       <div class="col-md-4">
         <h5>Enlaces</h5>
-        <a href="../inicioHome/inicio.php?id_usuario=<?php echo $id_usuario; ?>">Inicio</a><br>
-        <a href="../ContactoEmpresa/formularioContactarEmpresa.php?id_usuario=<?php echo $id_usuario; ?>">Contacto</a><br>
-        <a href="../PreguntasFrecuentes/FAQ.php?id_usuario=<?php echo $id_usuario; ?>">Preguntas Frecuentes</a><br>
+        <a href="../../inicioHome/inicio.php?id_usuario=<?php echo $id_usuario; ?>">Inicio</a><br>
+        <a href="../../ContactoEmpresa/formularioContactarEmpresa.php?id_usuario=<?php echo $id_usuario; ?>">Contacto</a><br>
+        <a href="../../PreguntasFrecuentes/FAQ.php?id_usuario=<?php echo $id_usuario; ?>">Preguntas Frecuentes</a><br>
         <a href="#">Acerca de Nosotros</a>
       </div>
       <div class="col-md-4">

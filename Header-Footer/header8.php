@@ -1,5 +1,5 @@
 <style>
-  <?php include("../CSS/header2.css"); ?>
+  <?php include("../CSS/header.css"); ?>
 </style>
 
 <?php
@@ -27,32 +27,28 @@ include("../ConexionDB/conexion.php");
   <!-- Sweet Alert Script -->
   <script src="../js/sweetalert.min.js"></script>
   <!-- Fontawesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css" rel="stylesheet">
   <title>RentFácil</title>
 </head>
-<style>
-  .iconoNav{
-    margin-top: 3px !important;
-  }
-</style>
+
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary fondo" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">RentFácil</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="inicioAdminIframe.php?id_usuario=<?php echo $id_usuario; ?>" style="color:white !important;" target="visor"><i class="fa-solid fa-house iconoNav"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../inicioSesion/iniciarSesion.php" style="color:white !important;">Cerrar Sesión</a>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fondo2" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">RentFácil</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="inicioAdminIframe.php?id_usuario=<?php echo $id_usuario; ?>" style="color:white !important;" target="visor"><i class="fa-solid fa-house iconoNav"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../inicioSesion/iniciarSesion.php" style="color:white !important;">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</body>
