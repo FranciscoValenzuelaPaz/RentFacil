@@ -1,76 +1,70 @@
 <style>
-    <?php include("../CSS/formularioCotizacion.css"); ?>
+    <?php include("../CSS/formularioCotizacion.css"); ?><?php include("../Header-Footer/header7.php"); ?>
 </style>
 
 <html>
 
-<body class="body">
-    <div class="container contenedor">
-        <?php
-        include("../Header-Footer/header7.php");
-        if (isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['tipo_servicio'])) {
-            $id_usuario = $_GET['id_usuario'];
-            $id_maquinaria = $_GET['id_maquinaria'];
-            $tipo_servicio = $_GET['tipo_servicio'];
-        } else {
-            $id_usuario = '';
-            $id_maquinaria = '';
-            $tipo_servicio = '';
-        }
+<body>
+    <?php
+    if (isset($_GET['id_usuario']) && isset($_GET['id_maquinaria']) && isset($_GET['tipo_servicio'])) {
+        $id_usuario = $_GET['id_usuario'];
+        $id_maquinaria = $_GET['id_maquinaria'];
+        $tipo_servicio = $_GET['tipo_servicio'];
+    } else {
+        $id_usuario = '';
+        $id_maquinaria = '';
+        $tipo_servicio = '';
+    }
 
 
-        // echo "id_usuario: " . $id_usuario . "<br>";
-        // echo "id_maquinaria: " . $id_maquinaria . "<br>";
-        // echo "tipo_servicio: " . $tipo_servicio . "<br>";
+    // echo "id_usuario: " . $id_usuario . "<br>";
+    // echo "id_maquinaria: " . $id_maquinaria . "<br>";
+    // echo "tipo_servicio: " . $tipo_servicio . "<br>";
 
 
-        //consulta para traer información respecto a la publicación
+    //consulta para traer información respecto a la publicación
 
-        $arrayInfoPublicacion = array();
-        $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as M JOIN tabla_usuario as U ON M.id_usuario=U.id_usuario WHERE M.id_maquinaria='$id_maquinaria'");
-        // Especificamos el fetch mode antes de llamar a fetch()
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        // Ejecutamos
-        $stmt->execute();
-        // Mostramos los resultados
-        while ($row = $stmt->fetch()) {
-            $arrayInfoPublicacion[] = $row;
-        }
+    $arrayInfoPublicacion = array();
+    $stmt = $dbh->prepare("SELECT * FROM tabla_maquinarias as M JOIN tabla_usuario as U ON M.id_usuario=U.id_usuario WHERE M.id_maquinaria='$id_maquinaria'");
+    // Especificamos el fetch mode antes de llamar a fetch()
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    // Ejecutamos
+    $stmt->execute();
+    // Mostramos los resultados
+    while ($row = $stmt->fetch()) {
+        $arrayInfoPublicacion[] = $row;
+    }
 
-        $id_servicio = $id_maquinaria;
-        $id_usuario_publicacion = $arrayInfoPublicacion[0]['id_usuario'];
-        $monto = $arrayInfoPublicacion[0]['montoArriendo'];
+    $id_servicio = $id_maquinaria;
+    $id_usuario_publicacion = $arrayInfoPublicacion[0]['id_usuario'];
+    $monto = $arrayInfoPublicacion[0]['montoArriendo'];
 
-        // echo $id_usuario_publicacion . "<br>";
-        // echo $monto;
+    // echo $id_usuario_publicacion . "<br>";
+    // echo $monto;
 
-        ?>
-        <form name="form1" class="fondo" action="enviarCotizacion.php" method="POST">
-            <div class="fs-3 titulo">COTIZACIÓN DE SERVICIO DE MAQUINARIAS</div>
-            <input class="input" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
-            <input class="input" type="hidden" name="id_usuario_publicacion" value="<?php echo $id_usuario_publicacion; ?>">
-            <input class="input" type="hidden" name="id_servicio" value="<?php echo $id_servicio; ?>">
-            <input class="input" type="hidden" name="monto" value="<?php echo $monto; ?>">
-            <input class="input" type="hidden" name="tipo_servicio" value="<?php echo $tipo_servicio; ?>">
+    ?>
+    <form name="form1" class="fondo" action="enviarCotizacion.php" method="POST">
+        <div class="fs-3 titulo mb-5">COTIZACIÓN DE SERVICIO DE MAQUINARIAS</div>
+        <input class="input" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+        <input class="input" type="hidden" name="id_usuario_publicacion" value="<?php echo $id_usuario_publicacion; ?>">
+        <input class="input" type="hidden" name="id_servicio" value="<?php echo $id_servicio; ?>">
+        <input class="input" type="hidden" name="monto" value="<?php echo $monto; ?>">
+        <input class="input" type="hidden" name="tipo_servicio" value="<?php echo $tipo_servicio; ?>">
 
-            <div class="form-group input">
-                <label for="fecha_desde">Fecha Desde</label>
-                <input type="date" class="form-control input2" id="fecha_desde" name="fecha_desde" Required>
-            </div>
-            <div class="form-group input">
-                <label for="fecha_hasta">Fecha Hasta</label>
-                <input type="date" class="form-control input2" id="fecha_hasta" name="fecha_hasta" Required>
-            </div>
-            <div class="d-flex margenBoton fin  ">
-                <button type="submit" class="btn btn-success " id="btnEnviarCotizacion" name="btnEnviarCotizacion">Enviar Cotización</button>&nbsp;
-                <input type="button" class="btn btn-secondary " name="cancelar" value="Cancelar" onclick="location.href='../Servicios/Maquinaria/publicacionMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>'">
-            </div>
-        </form>
+        <div class="form-group mb-4">
+            <label for="fecha_desde">Fecha Desde</label>
+            <input type="date" class="form-control" id="fecha_desde" name="fecha_desde" Required>
+        </div>
+        <div class="form-group">
+            <label for="fecha_hasta">Fecha Hasta</label>
+            <input type="date" class="form-control" id="fecha_hasta" name="fecha_hasta" Required>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-success" id="btnEnviarCotizacion" name="btnEnviarCotizacion">Enviar Cotización</button>&nbsp;
+            <input type="button" class="btn btn-secondary" name="cancelar" value="Cancelar" onclick="location.href='../Servicios/Maquinaria/publicacionMaquinaria.php?id_usuario=<?php echo $id_usuario; ?>'">
+        </div>
+    </form>
     </div>
-</body>
-
-</html>
-
 
 
 <!-- Optional JavaScript; choose one of the two! -->
