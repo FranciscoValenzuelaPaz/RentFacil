@@ -21,54 +21,61 @@ if (isset($_GET['mensaje'])) {
 <script>
   var mensaje = "<?php echo $mensaje; ?>";
   if (mensaje == "max_direcciones") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección</p>
+    //                 `,
+    // });
+    alert("Límite de Direcciones alcanzado. Intenta Editar o Borrar una Dirección")
 
   }
   if (mensaje == "registrado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Contrato Registrado con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Contrato Registrado con éxito.</p>
+    //                 `,
+    // });
+    alert("Contrato Registrado con éxito.")
   }
   if (mensaje == "error_registrar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Registrar Contrato. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Registrar Contrato. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Registrar Contrato. Porfavor vuelve a intentarlo.")
   }
   if (mensaje == "editado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Contrato editado con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Contrato editado con éxito.</p>
+    //                 `,
+    // });
+    alert("Contrato editado con éxito.")
   }
   if (mensaje == "error_editar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Editar Contrato. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Editar Contrato. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Editar Contrato. Porfavor vuelve a intentarlo.")
   }
   if (mensaje == "eliminado") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Contrato eliminado con éxito.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Contrato eliminado con éxito.</p>
+    //                 `,
+    // });
+    alert("Contrato eliminado con éxito.")
   }
   if (mensaje == "error_eliminar") {
-    Swal.fire({
-      html: `
-                    <p style="text-align:justify;">Error al Eliminar Contrato. Porfavor vuelve a intentarlo.</p>
-                    `,
-    });
+    // Swal.fire({
+    //   html: `
+    //                 <p style="text-align:justify;">Error al Eliminar Contrato. Porfavor vuelve a intentarlo.</p>
+    //                 `,
+    // });
+    alert("Error al Eliminar Contrato. Porfavor vuelve a intentarlo.")
   }
 </script>
 <html>

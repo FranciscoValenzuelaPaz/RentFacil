@@ -5,6 +5,7 @@ ini_set("display_errors", 1);
 ini_set('default_charset', 'utf-8');
 error_reporting(E_ALL);
 include("../ConexionDB/conexion.php");
+include("../encriptarContrasena/encriptarClave.php");
 
 ?>
 
@@ -22,6 +23,7 @@ include("../ConexionDB/conexion.php");
 
 //capturo los datos del formulario
 $id_usuario = $_GET['id_usuario'];
+$id_usuario_original = $desencriptar($id_usuario);
 $id_contrato = $_GET['id_contrato'];
 $fecha = date("Y-m-d H:i:s");
 $respuesta = TRUE;
@@ -30,7 +32,7 @@ $mensaje = '';
 
 //generamos consulta para eliminar los datos de la base de datos
 $query = $dbh->prepare("UPDATE tabla_contratos SET eliminado = ?,fecha_eliminacion = ?,usuario_eliminacion = ?  WHERE id_contrato = ?");
-    $resultado = $query->execute([ $respuesta, $fecha, $id_usuario,$id_contrato]); # Pasar en el mismo orden de los ?
+    $resultado = $query->execute([ $respuesta, $fecha, $id_usuario_original,$id_contrato]); # Pasar en el mismo orden de los ?
     if ($resultado === TRUE) {
         $mensaje = "eliminado";
         echo '
