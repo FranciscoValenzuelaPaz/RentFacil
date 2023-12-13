@@ -1,11 +1,15 @@
 <?php
 include("../../../Header-Footer/header5.php");
+include("../../../encriptarContrasena/encriptarClave.php");
+
 ?>
 
 <?php
 
 //capturo los datos del formulario
 $id_usuario = $_POST["id_usuario"];
+$id_usuario_original = $desencriptar($id_usuario);
+
 $titulo = $_POST["titulo"];
 $ubicacion = $_POST["ubicacion"];
 $id_comuna = $_POST["id_comuna"];
@@ -16,7 +20,6 @@ $descripcion = $_POST["descripcion"];
 
 
 if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] == 'image/jpeg') {
-
 
 
     //Trabajar links de archivos
@@ -44,7 +47,7 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
     // Reemplazar por PDO
     //generamos consulta para actualizar los datos en la base de datos
     $sql = "INSERT INTO tabla_estacionamientos (titulo, descripcion, fecha, id_usuario, ubicacion, id_comuna, montoArriendo,montoArriendo2, link_foto) VALUES
-    ( '$titulo ', '$descripcion', '$fechaFormulario', '$id_usuario', '$ubicacion', '$id_comuna', '$montoArriendo', '$montoArriendo2', '$linkFoto')";
+    ( '$titulo ', '$descripcion', '$fechaFormulario', '$id_usuario_original', '$ubicacion', '$id_comuna', '$montoArriendo', '$montoArriendo2', '$linkFoto')";
 
     //creo variables de resultado 
     if ($dbh->exec($sql)) {
@@ -60,23 +63,8 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
                     window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
     }
-} else {
-    //var_dump($_FILES);
-    $mensaje = "error_registrar";
-    echo $mensaje;
-    echo '
-    <script>
-            window.location="../../../Servicios/Estacionamiento/Usuario/crudEstacionamiento.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
-    </script>';
 }
 ?>
-<br><br>
-
-
-<br>
-
-
-
 
 
 <!-- Optional JavaScript; choose one of the two! -->
@@ -89,8 +77,3 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   -->
-</div>
-
-</body>
-
-</html>

@@ -1,11 +1,13 @@
 <?php
 include("../../../Header-Footer/header5.php");
+include("../../../encriptarContrasena/encriptarClave.php");
 ?>
 
 <?php
 
 //capturo los datos del formulario
 $id_usuario = $_POST["id_usuario"];
+$id_usuario_original = $desencriptar($id_usuario);
 $titulo = $_POST["titulo"];
 $tipo = $_POST["tipo"];
 $ubicacion = $_POST["ubicacion"];
@@ -17,19 +19,19 @@ $descripcion = $_POST["descripcion"];
 
 if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] == 'image/jpeg') {
 
-    //Trabajar links de archivos
-    $foto = $_FILES['link_foto']['name'];
-    trim($foto);
-    $archivoFoto = $_FILES['link_foto']['tmp_name'];
-    $fecha = date_create();
-    $fecha = date_timestamp_get($fecha);
+        //Trabajar links de archivos
+        $foto = $_FILES['link_foto']['name'];
+        trim($foto);
+        $archivoFoto = $_FILES['link_foto']['tmp_name'];
+        $fecha = date_create();
+        $fecha = date_timestamp_get($fecha);
 
-    $rutaFoto = "../../../Servicios/Maquinaria/Usuario/fotosUsuarios/" . $fecha . $foto;
+        $rutaFoto = "../../../Servicios/Maquinaria/Usuario/fotosUsuarios/" . $fecha . $foto;
 
-    $linkFoto = "http://localhost/ProyectoInacap/RentFacil/Servicios/Maquinaria/Usuario/fotosUsuarios/" . $fecha . $foto;
+        $linkFoto = "http://localhost/ProyectoInacap/RentFacil/Servicios/Maquinaria/Usuario/fotosUsuarios/" . $fecha . $foto;
 } else {
-    $mensaje = "formato_invalido";
-    echo '
+        $mensaje = "formato_invalido";
+        echo '
             <script>
                     window.location="../../../Servicios/Maquinaria/Usuario/registrarMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
@@ -39,43 +41,27 @@ if ($_FILES['link_foto']['type'] == 'image/png' || $_FILES['link_foto']['type'] 
 if (move_uploaded_file($archivoFoto, $rutaFoto)) {
 
 
-    // Reemplazar por PDO
-    //generamos consulta para actualizar los datos en la base de datos
-    $sql = "INSERT INTO tabla_maquinarias (titulo, descripcion ,tipo , fecha, id_usuario, bencina, ubicacion, id_comuna, montoArriendo, link_foto) VALUES
-    ( '$titulo ', '$descripcion', '$tipo', '$fechaFormulario', '$id_usuario', '$bencina', '$ubicacion', '$id_comuna', '$montoArriendo', '$linkFoto')";
+        // Reemplazar por PDO
+        //generamos consulta para actualizar los datos en la base de datos
+        $sql = "INSERT INTO tabla_maquinarias (titulo, descripcion ,tipo , fecha, id_usuario, bencina, ubicacion, id_comuna, montoArriendo, link_foto) VALUES
+                ( '$titulo ', '$descripcion', '$tipo', '$fechaFormulario', '$id_usuario_original', '$bencina', '$ubicacion', '$id_comuna', '$montoArriendo', '$linkFoto')";
 
-    //creo variables de resultado 
-    if ($dbh->exec($sql)) {
-        $mensaje = 'registrado';
-        echo '
+        //creo variables de resultado 
+        if ($dbh->exec($sql)) {
+                $mensaje = 'registrado';
+                echo '
             <script>
                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
-    } else {
-        $mensaje = 'error_registrar';
-        echo '
+        } else {
+                $mensaje = 'error_registrar';
+                echo '
             <script>
                     window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
             </script>';
-    }
-} else {
-    //var_dump($_FILES);
-    $mensaje = "error_registrar";
-    echo $mensaje;
-    echo '
-            <script>
-                    window.location="../../../Servicios/Maquinaria/Usuario/crudMaquinaria.php?id_usuario=' . $id_usuario . '&mensaje=' . $mensaje . '";
-            </script>';
+        }
 }
 ?>
-<br><br>
-
-
-<br>
-
-
-
-
 
 <!-- Optional JavaScript; choose one of the two! -->
 
@@ -87,8 +73,3 @@ if (move_uploaded_file($archivoFoto, $rutaFoto)) {
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   -->
-</div>
-
-</body>
-
-</html>
